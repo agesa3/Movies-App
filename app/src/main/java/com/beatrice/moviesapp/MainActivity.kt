@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
     val viewModel by viewModels<MoviesViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.test()
+        viewModel.getPopularMovies()
         setContent {
             MoviesAppTheme {
                 // A surface container using the 'background' color from the theme

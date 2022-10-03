@@ -24,8 +24,13 @@ android {
 
     buildTypes {
         release {
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
         }
     }
     compileOptions {
@@ -64,6 +69,11 @@ dependencies {
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //Moshi
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    //OkHttp3
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10'
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
@@ -71,6 +81,9 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
+
+    // logcat
+    implementation 'com.squareup.logcat:logcat:0.1'
 
 
     // Test
