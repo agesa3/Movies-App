@@ -11,17 +11,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.beatrice.moviesapp.presentaion.viewmodel.MoviesViewModel
-import com.beatrice.moviesapp.ui.theme.MoviesAppTheme
+import com.beatrice.moviesapp.presentaion.theme.MoviesAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import logcat.logcat
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     val viewModel by viewModels<MoviesViewModel>()
+
+    @OptIn(ExperimentalLifecycleComposeApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getPopularMovies()
+
         setContent {
+            val movies = viewModel.moviesViewState.collectAsStateWithLifecycle()
             MoviesAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(

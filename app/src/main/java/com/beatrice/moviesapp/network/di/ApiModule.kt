@@ -47,7 +47,7 @@ object ApiModule {
     @Provides
     fun provideAuthInterceptor() = Interceptor { chain ->
         val accessToken =
-            "2ae5d568999b3495f940ef9dee2cff06"// Maybe put it in local.properties file or else where
+            "2ae5d568999b3495f940ef9dee2cff06"// TODO: Maybe put it in local.properties file or else where
         val original = chain.request()
         val url = original.url.newBuilder().addQueryParameter("api_key", accessToken).build()
         val request = chain.request().newBuilder().url(url).build()

@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.di
+package com.beatrice.moviesapp.database.di
 
 import android.content.Context
 import androidx.room.Room

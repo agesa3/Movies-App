@@ -1,5 +1,9 @@
 package com.beatrice.moviesapp.data
 
+import com.beatrice.moviesapp.network.util.NetworkResult
+import com.beatrice.moviesapp.data.model.Movie
+import kotlinx.coroutines.flow.Flow
+
 interface MovieRepository {
-    suspend fun getPopularMovies()
+    fun getPopularMovies(): Flow<NetworkResult<List<Movie>>>
 }

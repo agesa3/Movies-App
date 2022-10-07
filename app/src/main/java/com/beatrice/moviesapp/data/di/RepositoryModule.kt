@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.di
+package com.beatrice.moviesapp.data.di
 
 import com.beatrice.moviesapp.data.MovieRepository
 import com.beatrice.moviesapp.data.MovieRepositoryImpl

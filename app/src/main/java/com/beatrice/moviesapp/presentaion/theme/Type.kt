@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.ui.theme
+package com.beatrice.moviesapp.presentaion.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
