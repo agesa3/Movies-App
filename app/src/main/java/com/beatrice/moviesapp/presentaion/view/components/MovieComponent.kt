@@ -52,7 +52,7 @@ fun MovieComponent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current).data("URL").build(),
+                model = ImageRequest.Builder(LocalContext.current).data("https://image.tmdb.org/t/p/w342${movie.posterPath}").build(),
                 placeholder = painterResource(id = R.drawable.ic_baseline_movie_24),
                 contentDescription = stringResource(R.string.movie_poster),
                 contentScale = ContentScale.Crop,

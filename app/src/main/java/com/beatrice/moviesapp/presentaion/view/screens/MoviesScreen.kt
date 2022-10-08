@@ -3,6 +3,7 @@ package com.beatrice.moviesapp.presentaion.view.screens
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
@@ -17,6 +18,10 @@ import com.beatrice.moviesapp.presentaion.viewmodel.MoviesViewModel
 @Composable
 fun MovieScreen(moviesViewModel: MoviesViewModel = hiltViewModel()) {
     val moviesState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
+
+    LaunchedEffect(true){
+        moviesViewModel.getPopularMovies()
+    }
     Scaffold(
         topBar = { /** TODO: Complete this*/ },
 
