@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.presentaion.theme
+package com.beatrice.moviesapp.presentaion.view.theme
 
 import android.app.Activity
 import android.os.Build

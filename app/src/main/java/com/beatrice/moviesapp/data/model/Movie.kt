@@ -10,6 +10,9 @@ data class Movie(
     val voteCount: Int,
     val voteAverage: Double,
     val popularity: Double,
+    val posterPath: String,
+    val backdropPath: String,
+    val overview: String
 )
 
 fun MovieNetworkResult.toMoviesList(): List<Movie> =results.map {
@@ -20,7 +23,11 @@ fun MovieNetworkResult.toMoviesList(): List<Movie> =results.map {
             releaseDate = it.release_date,
             voteAverage = it.vote_average,
             voteCount = it.vote_count,
-            popularity = it.popularity
+            popularity = it.popularity,
+            posterPath = it.poster_path,
+            backdropPath = it.backdrop_path,
+            overview = it.overview
+
         )
     }.toList()
 
