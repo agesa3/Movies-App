@@ -1,17 +1,19 @@
 package com.beatrice.moviesapp.presentaion.view.components
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +27,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.beatrice.moviesapp.R
@@ -41,7 +45,9 @@ fun MovieComponent(
      * TODO: Alternating colors background and the border
      */
     Card(
-        modifier= Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         shape = RoundedCornerShape(16.dp)
 
@@ -49,27 +55,62 @@ fun MovieComponent(
     ) {
         Row(
             modifier = Modifier.padding(7.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(7.dp)
+
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current).data("https://image.tmdb.org/t/p/w342${movie.posterPath}").build(),
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data("https://image.tmdb.org/t/p/w342${movie.posterPath}").build(),
                 placeholder = painterResource(id = R.drawable.ic_baseline_movie_24),
                 contentDescription = stringResource(R.string.movie_poster),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.clip(CircleShape)
+                modifier = Modifier.clip(RoundedCornerShape(27.dp))
             )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column() {
+            ConstraintLayout {
+                val (titleText, dateText, divider1, langText, overviewText) = createRefs()
                 Text(
                     text = movie.title,
+                    modifier = Modifier.constrainAs(titleText) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                    },
                     style = TextStyle(
                         fontFamily = FontFamily.Serif,
                         fontSize = 18.sp,
-                        color = Color.DarkGray
+                        color = Color.DarkGray,
+                        fontWeight = FontWeight.SemiBold
                     )
                 )
                 Text(
                     text = movie.releaseDate,
+                    modifier = Modifier.constrainAs(dateText) {
+                        top.linkTo(titleText.bottom, 10.dp)
+                        start.linkTo(parent.start)
+                    },
+                    style = TextStyle(
+                        fontFamily = FontFamily.Serif,
+                        fontSize = 14.sp,
+                        color = Color.Gray
+                    )
+                )
+                Divider(
+                    color = Color.LightGray,
+                    thickness = 1.dp,
+                    modifier = Modifier.constrainAs(divider1) {
+                        top.linkTo(titleText.bottom, 10.dp)
+                        start.linkTo(dateText.end, 4.dp)
+                        bottom.linkTo(overviewText.top)
+                    }.height(12.dp)
+                        .width(1.dp)
+                )
+                Text(
+                    text = movie.language,
+                    modifier = Modifier
+                        .constrainAs(langText) {
+                            top.linkTo(titleText.bottom, 10.dp)
+                            start.linkTo(divider1.end, 4.dp)
+                        },
                     style = TextStyle(
                         fontFamily = FontFamily.Serif,
                         fontSize = 14.sp,
@@ -77,17 +118,18 @@ fun MovieComponent(
                     )
                 )
                 Text(
-                    text = movie.language, style = TextStyle(
+                    text = "${movie.overview.take( 70)} ...",
+                    modifier = Modifier
+                        .constrainAs(overviewText) {
+                                top.linkTo(dateText.bottom, 10.dp)
+                                start.linkTo(parent.start)
+                        },
+                    style = TextStyle(
                         fontFamily = FontFamily.Serif,
-                        fontSize = 14.sp,
+                        fontSize = 16.sp,
                         color = Color.Gray
                     )
                 )
-                Text(text = movie.overview, style = TextStyle(
-                    fontFamily = FontFamily.Serif,
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                ))
             }
         }
 
@@ -106,11 +148,14 @@ fun MovieComponentPreview() {
                 voteAverage = 0.0,
                 posterPath = "ABC",
                 backdropPath = "ABC",
-                releaseDate = "ABC",
+                releaseDate = "2022.10.3",
                 language = "en",
                 popularity = 0.0,
                 voteCount = 0,
-                overview = "asdfasdf"
+                overview = "The quick brown fox jumped over a lazy dog." +
+                        " The quick brown fox jumped over a lazy dog. " +
+                        "The quick brown fox jumped over a lazy dog. " +
+                        "The quick brown fox jumped over a lazy dog."
             )
         )
 
