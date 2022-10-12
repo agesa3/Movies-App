@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.beatrice.moviesapp.presentaion.view.screens.MovieScreen
-import com.beatrice.moviesapp.presentaion.viewmodel.MoviesViewModel
+import com.beatrice.moviesapp.presentaion.view.viewmodel.MoviesViewModel
 import com.beatrice.moviesapp.presentaion.view.theme.MoviesAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 

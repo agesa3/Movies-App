@@ -8,44 +8,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.beatrice.moviesapp.presentaion.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentaion.model.MoviesViewState
 import com.beatrice.moviesapp.presentaion.view.components.ErrorMessageComponent
 import com.beatrice.moviesapp.presentaion.view.components.MoviesListComponent
 import com.beatrice.moviesapp.presentaion.view.components.ProgressIndicatorComponent
-import com.beatrice.moviesapp.presentaion.view.components.movieList
-import com.beatrice.moviesapp.presentaion.viewmodel.MoviesViewModel
-import logcat.logcat
+import com.beatrice.moviesapp.presentaion.view.viewmodel.MoviesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun MovieScreen(moviesViewModel: MoviesViewModel = hiltViewModel()) {
     val moviesState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
 
-    LaunchedEffect(true){
-        logcat("SOLOONG"){"To get here"}
-        moviesViewModel.getPopularMovies()
+    LaunchedEffect(true) {
+        moviesViewModel.movieUiEvents.send(MovieUiEvent.GetPopularMovies)
     }
+
+
     Scaffold(
         topBar = { /** TODO: Complete this*/ },
 
         ) { paddingValues ->
-        MoviesListComponent(movies = movieList)
-//        when (moviesState) { // TODO: Undo
-//            is MoviesViewState.Loading -> {
-//                ProgressIndicatorComponent()
-//            }
-//            is MoviesViewState.MoviesList -> {
-//                MoviesListComponent(movies = moviesState.movies)
-//            }
-//            is MoviesViewState.Error -> {
-//                ErrorMessageComponent(
-//                    message = moviesState.message,
-//
-//                )
-//            }
-//        }
+//        MoviesListComponent(movies = movieList).. Build variants story
+        when (moviesState) { // TODO: Undo
+            is MoviesViewState.Loading -> {
+                ProgressIndicatorComponent()
+            }
+            is MoviesViewState.MoviesList -> {
+                MoviesListComponent(movies = moviesState.movies)
+            }
+            is MoviesViewState.Error -> {
+                ErrorMessageComponent(message = moviesState.message)
+            }
+        }
     }
-
 }
 
 @Preview
