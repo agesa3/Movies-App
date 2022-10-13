@@ -3,8 +3,8 @@ package com.beatrice.moviesapp.data
 import com.beatrice.moviesapp.data.model.Movie
 import com.beatrice.moviesapp.data.model.toMoviesList
 import com.beatrice.moviesapp.database.dao.MovieDao
-import com.beatrice.moviesapp.network.datasource.MoviesDataSource
-import com.beatrice.moviesapp.network.util.NetworkResult
+import com.beatrice.moviesapp.presentation.view.network.datasource.MoviesDataSource
+import com.beatrice.moviesapp.presentation.view.network.util.NetworkResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

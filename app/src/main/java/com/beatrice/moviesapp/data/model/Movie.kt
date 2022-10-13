@@ -1,6 +1,6 @@
 package com.beatrice.moviesapp.data.model
 
-import com.beatrice.moviesapp.network.model.MovieNetworkResult
+import com.beatrice.moviesapp.presentation.view.network.model.MovieNetworkResult
 
 data class Movie(
     val id: Int,
