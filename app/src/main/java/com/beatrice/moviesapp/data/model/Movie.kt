@@ -3,6 +3,7 @@ package com.beatrice.moviesapp.data.model
 import com.beatrice.moviesapp.network.model.MovieNetworkResult
 
 data class Movie(
+    val id: Int,
     val title: String,
     val originalTitle: String,
     val language: String,
@@ -17,6 +18,7 @@ data class Movie(
 
 fun MovieNetworkResult.toMoviesList(): List<Movie> =results.map {
         Movie(
+            id = it.id,
             title = it.title,
             originalTitle = it.original_title,
             language = it.original_language,

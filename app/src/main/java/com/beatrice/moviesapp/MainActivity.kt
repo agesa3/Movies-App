@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.compose.rememberNavController
+import com.beatrice.moviesapp.presentaion.navigation.MoviesNavHost
 import com.beatrice.moviesapp.presentaion.view.screens.MovieScreen
 import com.beatrice.moviesapp.presentaion.view.viewmodel.MoviesViewModel
 import com.beatrice.moviesapp.presentaion.view.theme.MoviesAppTheme
@@ -27,11 +29,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             MoviesAppTheme {
                 // A surface container using the 'background' color from the theme
+                val navController = rememberNavController()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MovieScreen()
+                    MoviesNavHost(navController = navController)
                 }
             }
         }

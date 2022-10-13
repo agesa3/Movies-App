@@ -3,7 +3,6 @@ package com.beatrice.moviesapp.presentaion.view.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
@@ -21,7 +20,11 @@ import androidx.compose.ui.unit.sp
 import com.beatrice.moviesapp.data.model.Movie
 
 @Composable
-fun MoviesListComponent(movies: List<Movie>, resultType: String = "Popular Movies") {
+fun MoviesListComponent(
+    movies: List<Movie>,
+    resultType: String = "Popular Movies",
+    navigateToMovieDetails: (movieId: Int) -> Unit = {}
+) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp)
@@ -40,21 +43,25 @@ fun MoviesListComponent(movies: List<Movie>, resultType: String = "Popular Movie
             )
         }
         items(movies) { movie ->
-            MovieComponent(movie = movie)
+            MovieComponent(
+                movie = movie,
+                navigateToMovieDetails = navigateToMovieDetails
+            )
         }
     }
 }
 
 @Preview
 @Composable
-fun MoviesListComponentPreview(){
-    Surface(color =  Color.White) {
+fun MoviesListComponentPreview() {
+    Surface(color = Color.White) {
         MoviesListComponent(movies = movieList)
     }
 }
 
 val movieList = listOf(
     Movie(
+        id = 0,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -70,6 +77,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 1,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -85,6 +93,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 2,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -100,6 +109,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 3,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -115,6 +125,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 4,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -130,6 +141,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 5,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -145,6 +157,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 6,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -160,6 +173,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 7,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -175,6 +189,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 8,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,
@@ -190,6 +205,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog."
     ),
     Movie(
+        id = 9,
         title = "Abc",
         originalTitle = "ABC",
         voteAverage = 0.0,

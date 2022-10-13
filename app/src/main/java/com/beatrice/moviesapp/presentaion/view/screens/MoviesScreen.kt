@@ -13,34 +13,32 @@ import com.beatrice.moviesapp.presentaion.model.MoviesViewState
 import com.beatrice.moviesapp.presentaion.view.components.ErrorMessageComponent
 import com.beatrice.moviesapp.presentaion.view.components.MoviesListComponent
 import com.beatrice.moviesapp.presentaion.view.components.ProgressIndicatorComponent
+import com.beatrice.moviesapp.presentaion.view.components.movieList
 import com.beatrice.moviesapp.presentaion.view.viewmodel.MoviesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
-fun MovieScreen(moviesViewModel: MoviesViewModel = hiltViewModel()) {
+fun MovieScreen(moviesViewModel: MoviesViewModel = hiltViewModel(),
+navigateToMovieDetails: (movieId: Int) -> Unit = {}) {
     val moviesState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
 
     LaunchedEffect(true) {
         moviesViewModel.movieUiEvents.send(MovieUiEvent.GetPopularMovies)
     }
 
-
-    Scaffold(
-        topBar = { /** TODO: Complete this*/ },
-
-        ) { paddingValues ->
-//        MoviesListComponent(movies = movieList).. Build variants story
-        when (moviesState) { // TODO: Undo
-            is MoviesViewState.Loading -> {
-                ProgressIndicatorComponent()
-            }
-            is MoviesViewState.MoviesList -> {
-                MoviesListComponent(movies = moviesState.movies)
-            }
-            is MoviesViewState.Error -> {
-                ErrorMessageComponent(message = moviesState.message)
-            }
-        }
+    Scaffold() { paddingValues ->
+        MoviesListComponent(movies = movieList, navigateToMovieDetails = navigateToMovieDetails)
+//        when (moviesState) {
+//            is MoviesViewState.Loading -> {
+//                ProgressIndicatorComponent()
+//            }
+//            is MoviesViewState.MoviesList -> {
+//                MoviesListComponent(movies = moviesState.movies)
+//            }
+//            is MoviesViewState.Error -> {
+//                ErrorMessageComponent(message = moviesState.message)
+//            }
+//        }
     }
 }
 

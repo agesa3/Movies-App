@@ -25,7 +25,6 @@ class MoviesViewModel @Inject constructor(
         MutableStateFlow(MoviesViewState.Loading)
     val moviesViewState: StateFlow<MoviesViewState> = _movieViewState.asStateFlow()
 
-    /// Create a stream of activities using channel
     val movieUiEvents = Channel<MovieUiEvent>(Channel.BUFFERED)
 
     init {
@@ -50,10 +49,12 @@ class MoviesViewModel @Inject constructor(
                         _movieViewState.value = MoviesViewState.MoviesList(movies = result.data)
                     }
                     is NetworkResult.Error -> {
-                        _movieViewState.value = MoviesViewState.Error(message = "TODO: fix")
+                        _movieViewState.value =
+                            MoviesViewState.Error(message = "TODO: Put appropriate message")
                     }
                     is NetworkResult.Exception -> {
-                        _movieViewState.value = MoviesViewState.Error(message = "TODO: fix")
+                        _movieViewState.value =
+                            MoviesViewState.Error(message = "TODO: Put appropriate message")
                     }
                 }
             }

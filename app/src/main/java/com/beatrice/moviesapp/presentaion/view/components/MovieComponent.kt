@@ -2,14 +2,11 @@ package com.beatrice.moviesapp.presentaion.view.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -39,7 +36,8 @@ import com.beatrice.moviesapp.data.model.Movie
 
 @Composable
 fun MovieComponent(
-    movie: Movie
+    movie: Movie,
+    navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     /**
      * TODO: Alternating colors background and the border
@@ -47,7 +45,12 @@ fun MovieComponent(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp),
+            .height(200.dp)
+            .selectable(
+                selected = true,
+                onClick = {
+                    navigateToMovieDetails(movie.id)
+                }),
         elevation = CardDefaults.cardElevation(4.dp),
         shape = RoundedCornerShape(16.dp)
 
@@ -97,11 +100,13 @@ fun MovieComponent(
                 Divider(
                     color = Color.LightGray,
                     thickness = 1.dp,
-                    modifier = Modifier.constrainAs(divider1) {
-                        top.linkTo(titleText.bottom, 10.dp)
-                        start.linkTo(dateText.end, 4.dp)
-                        bottom.linkTo(overviewText.top)
-                    }.height(12.dp)
+                    modifier = Modifier
+                        .constrainAs(divider1) {
+                            top.linkTo(titleText.bottom, 10.dp)
+                            start.linkTo(dateText.end, 4.dp)
+                            bottom.linkTo(overviewText.top)
+                        }
+                        .height(12.dp)
                         .width(1.dp)
                 )
                 Text(
@@ -118,11 +123,11 @@ fun MovieComponent(
                     )
                 )
                 Text(
-                    text = "${movie.overview.take( 70)} ...",
+                    text = "${movie.overview.take(70)} ...",
                     modifier = Modifier
                         .constrainAs(overviewText) {
-                                top.linkTo(dateText.bottom, 10.dp)
-                                start.linkTo(parent.start)
+                            top.linkTo(dateText.bottom, 10.dp)
+                            start.linkTo(parent.start)
                         },
                     style = TextStyle(
                         fontFamily = FontFamily.Serif,
@@ -143,6 +148,7 @@ fun MovieComponentPreview() {
     Surface(color = Color.White) {
         MovieComponent(
             movie = Movie(
+                id = 0,
                 title = "Abc",
                 originalTitle = "ABC",
                 voteAverage = 0.0,
