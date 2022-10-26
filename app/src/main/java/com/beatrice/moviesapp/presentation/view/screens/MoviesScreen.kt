@@ -13,7 +13,6 @@ import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.view.components.ErrorMessageComponent
 import com.beatrice.moviesapp.presentation.view.components.MoviesListComponent
 import com.beatrice.moviesapp.presentation.view.components.ProgressIndicatorComponent
-import com.beatrice.moviesapp.presentation.view.components.movieList
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
@@ -23,7 +22,7 @@ navigateToMovieDetails: (movieId: Int) -> Unit = {}) {
     val moviesState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
 
     LaunchedEffect(true) {
-        moviesViewModel.movieUiEvents.send(MovieUiEvent.GetPopularMovies)
+        moviesViewModel.movieUiEvents.send(MovieUiEvent.FetchPopularMovies)
     }
 
     Scaffold() { paddingValues ->

@@ -3,11 +3,12 @@ package com.beatrice.moviesapp.presentation.view.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beatrice.moviesapp.data.MovieRepository
-import com.beatrice.moviesapp.presentation.view.network.util.NetworkResult
+import com.beatrice.moviesapp.data.model.Movie
 import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.util.TimeCapsule
 import com.beatrice.moviesapp.presentation.util.TimeTravelCapsule
+import com.beatrice.moviesapp.presentation.view.network.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
@@ -41,8 +42,8 @@ class MoviesViewModel @Inject constructor(
         viewModelScope.launch {
             movieUiEvents.consumeAsFlow().collect { uiEvent ->
                 when (uiEvent) {
-                    is MovieUiEvent.GetPopularMovies -> getPopularMovies()
-                    is MovieUiEvent.GetFavouriteMoviews -> getFavouriteMovies()
+                    is MovieUiEvent.FetchPopularMovies -> getPopularMovies()
+                    is MovieUiEvent.FetchFavouriteMovies -> getFavouriteMovies()
                     is MovieUiEvent.MarkFavorite -> markFavourite()
                 }
             }
@@ -56,16 +57,18 @@ class MoviesViewModel @Inject constructor(
                     is NetworkResult.Success -> {
                         val newState = MoviesViewState.MoviesList(movies = result.data)
                         timeCapsule.addState(newState)
-                        _movieViewState.value =  newState
+                        _movieViewState.value = newState
                     }
                     is NetworkResult.Error -> {
-                        val newState = MoviesViewState.Error(message = "TODO: Put appropriate message")
+                        val newState =
+                            MoviesViewState.Error(message = "TODO: Put appropriate message")
                         _movieViewState.value = newState
                         timeCapsule.addState(newState)
 
                     }
                     is NetworkResult.Exception -> {
-                        val newState = MoviesViewState.Error(message = "TODO: Put appropriate message")
+                        val newState =
+                            MoviesViewState.Error(message = "TODO: Put appropriate message")
                         _movieViewState.value = newState
                         timeCapsule.addState(newState)
 
@@ -75,11 +78,11 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
-    private fun getFavouriteMovies(){
+    private fun getFavouriteMovies() {
 
     }
 
-    private fun markFavourite(){
+    private fun markFavourite() {
 
     }
 }
