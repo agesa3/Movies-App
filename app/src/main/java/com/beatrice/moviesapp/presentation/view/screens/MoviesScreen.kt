@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
+import com.beatrice.moviesapp.presentation.view.components.MoviesFab
 import com.beatrice.moviesapp.presentation.view.components.MoviesListComponent
 import com.beatrice.moviesapp.presentation.view.components.movieList
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
@@ -25,7 +26,9 @@ fun MovieScreen(
         moviesViewModel.movieUiEvents.send(MovieUiEvent.FetchPopularMovies)
     }
 
-    Scaffold() { paddingValues ->
+    Scaffold(
+
+    ) { paddingValues ->
         MoviesListComponent(movies = movieList, navigateToMovieDetails = navigateToMovieDetails)
 //        when (moviesState) {
 //            is MoviesViewState.Loading -> {
