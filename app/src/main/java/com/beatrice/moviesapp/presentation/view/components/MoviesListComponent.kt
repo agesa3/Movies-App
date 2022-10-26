@@ -3,8 +3,9 @@ package com.beatrice.moviesapp.presentation.view.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +26,10 @@ fun MoviesListComponent(
     resultType: String = "Popular Movies",
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
-    LazyColumn(
+    LazyVerticalGrid(columns = GridCells.Adaptive(256.dp),
+        contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
             Text(
@@ -49,6 +51,30 @@ fun MoviesListComponent(
             )
         }
     }
+//    LazyColumn(
+//        verticalArrangement = Arrangement.spacedBy(16.dp),
+//        contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp)
+//    ) {
+//        item {
+//            Text(
+//                text = resultType,
+//                modifier = Modifier.fillMaxWidth(),
+//                style = TextStyle(
+//                    fontWeight = FontWeight.SemiBold,
+//                    color = Color.DarkGray,
+//                    fontSize = 22.sp,
+//                    fontFamily = FontFamily.Serif
+//                ),
+//                textAlign = TextAlign.Center
+//            )
+//        }
+//        items(movies) { movie ->
+//            MovieComponent(
+//                movie = movie,
+//                navigateToMovieDetails = navigateToMovieDetails
+//            )
+//        }
+//    }
 }
 
 @Preview
