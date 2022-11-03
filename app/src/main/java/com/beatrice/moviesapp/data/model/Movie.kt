@@ -1,7 +1,10 @@
 package com.beatrice.moviesapp.data.model
 
+import android.os.Parcelable
 import com.beatrice.moviesapp.presentation.view.network.model.MovieNetworkResult
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Movie(
     val id: Int,
     val title: String,
@@ -14,7 +17,7 @@ data class Movie(
     val posterPath: String,
     val backdropPath: String,
     val overview: String
-)
+): Parcelable
 
 fun MovieNetworkResult.toMoviesList(): List<Movie> =results.map {
         Movie(

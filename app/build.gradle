@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -56,10 +57,15 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.6.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+
+    // Lifecycle
+    def lifecycle_version = "2.6.0-alpha03"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
 
     // Material 3
     implementation 'androidx.compose.material3:material3:1.1.0-alpha01'
@@ -68,7 +74,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
     // Navigation
-    def nav_version = "2.5.2"
+    def nav_version = "2.5.3"
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     // Room
@@ -94,11 +100,6 @@ dependencies {
 
     // logcat
     implementation 'com.squareup.logcat:logcat:0.1'
-
-    // Lifecycle
-    def lifecycle_version = "2.6.0-alpha02"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
 
     // Coil
     implementation "io.coil-kt:coil-compose:2.2.2"

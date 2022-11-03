@@ -1,9 +1,9 @@
 package com.beatrice.moviesapp.presentation.view.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beatrice.moviesapp.data.MovieRepository
-import com.beatrice.moviesapp.data.model.Movie
 import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.util.TimeCapsule
@@ -14,19 +14,23 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+const val MOVIES_STATE_KEY = "movies_state"
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
     private val movieRepository: MovieRepository,
-    private val ioDispatcher: CoroutineDispatcher
+    private val ioDispatcher: CoroutineDispatcher,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+
     private val _movieViewState: MutableStateFlow<MoviesViewState> =
         MutableStateFlow(MoviesViewState.Loading)
-    val moviesViewState: StateFlow<MoviesViewState> = _movieViewState.asStateFlow()
+
+    val moviesViewState: StateFlow<MoviesViewState> = savedStateHandle.getStateFlow(
+        MOVIES_STATE_KEY, MoviesViewState.Idle)
 
     val movieUiEvents = Channel<MovieUiEvent>(Channel.BUFFERED)
 
@@ -57,20 +61,20 @@ class MoviesViewModel @Inject constructor(
                     is NetworkResult.Success -> {
                         val newState = MoviesViewState.MoviesList(movies = result.data)
                         timeCapsule.addState(newState)
-                        _movieViewState.value = newState
+                        savedStateHandle[MOVIES_STATE_KEY] = newState
                     }
                     is NetworkResult.Error -> {
                         val newState =
                             MoviesViewState.Error(message = "TODO: Put appropriate message")
-                        _movieViewState.value = newState
                         timeCapsule.addState(newState)
+                        savedStateHandle[MOVIES_STATE_KEY] = newState
 
                     }
                     is NetworkResult.Exception -> {
                         val newState =
                             MoviesViewState.Error(message = "TODO: Put appropriate message")
-                        _movieViewState.value = newState
                         timeCapsule.addState(newState)
+                        savedStateHandle[MOVIES_STATE_KEY] = newState
 
                     }
                 }
