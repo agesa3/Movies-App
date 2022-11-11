@@ -7,10 +7,15 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -61,61 +66,44 @@ fun MoviesListComponent(
             }
         }
     ) { paddingValues ->
-        LazyVerticalGrid(
-
-            columns = GridCells.Adaptive(256.dp),
-            state = gridState,
-            contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            item {
-                Text(
-                    text = resultType,
-                    modifier = Modifier.fillMaxWidth(),
-                    style = TextStyle(
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.DarkGray,
-                        fontSize = 22.sp,
-                        fontFamily = FontFamily.Serif
-                    ),
-                    textAlign = TextAlign.Center
-                )
-            }
+        LazyRow(Modifier.padding(vertical = 48.dp, horizontal = 24.dp)){
             items(movies) { movie ->
                 MovieComponent(
                     movie = movie,
-                    navigateToMovieDetails = navigateToMovieDetails
                 )
             }
         }
-
-//    LazyColumn(
-//        verticalArrangement = Arrangement.spacedBy(16.dp),
-//        contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp)
-//    ) {
-//        item {
-//            Text(
-//                text = resultType,
-//                modifier = Modifier.fillMaxWidth(),
-//                style = TextStyle(
-//                    fontWeight = FontWeight.SemiBold,
-//                    color = Color.DarkGray,
-//                    fontSize = 22.sp,
-//                    fontFamily = FontFamily.Serif
-//                ),
-//                textAlign = TextAlign.Center
-//            )
+//        LazyVerticalGrid(
+//
+//            columns = GridCells.Adaptive(256.dp),
+//            state = gridState,
+//            contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
+//            verticalArrangement = Arrangement.spacedBy(16.dp),
+//            horizontalArrangement = Arrangement.spacedBy(8.dp)
+//        ) {
+//            item {
+//                Text(
+//                    text = resultType,
+//                    modifier = Modifier.fillMaxWidth(),
+//                    style = TextStyle(
+//                        fontWeight = FontWeight.SemiBold,
+//                        color = Color.DarkGray,
+//                        fontSize = 22.sp,
+//                        fontFamily = FontFamily.Serif
+//                    ),
+//                    textAlign = TextAlign.Center
+//                )
+//            }
+//            items(movies) { movie ->
+//                MovieComponent(
+//                    movie = movie,
+//                    navigateToMovieDetails = navigateToMovieDetails
+//                )
+//            }
 //        }
-//        items(movies) { movie ->
-//            MovieComponent(
-//                movie = movie,
-//                navigateToMovieDetails = navigateToMovieDetails
-//            )
-//        }
-//    }
     }
 }
+
 
 @Preview
 @Composable
