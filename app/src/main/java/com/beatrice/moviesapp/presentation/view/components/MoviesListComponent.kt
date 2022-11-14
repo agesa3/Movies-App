@@ -89,7 +89,7 @@ fun MoviesListComponent(
          * maxCurrentLineSpan
          */
 //        LazyVerticalGrid(
-//            columns = GridCells.Fixed(2),
+//            columns = GridCells.Adaptive(256.dp),
 //            state = gridState,
 //            contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
 //            verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -98,13 +98,13 @@ fun MoviesListComponent(
 //            movies.forEachIndexed { index, movie ->
 //                if (index == 0) {
 //                    item(
-//                        span = { GridItemSpan(maxLineSpan) }
+//                         // span = { GridItemSpan(maxLineSpan) }
 //                    ) {
 //                        MovieComponent(movie = movie)
 //                    }
 //                } else {
 //                    item(
-//                        span = { GridItemSpan(if (index % 4 == 0) 2 else 1) }
+//                        // span = { GridItemSpan(if (index % 4 == 0) 2 else 1) }
 //                    ) {
 //                        MovieComponent(movie = movie)
 //                    }
