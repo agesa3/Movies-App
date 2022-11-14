@@ -65,7 +65,7 @@ fun MoviesListComponent(
                     availableSize: Int,
                     spacing: Int
                 ): List<Int> {
-                    val firstColumn = (availableSize - spacing) * 2/3
+                    val firstColumn = (availableSize - spacing) * 2 / 3
                     val secondColumn = availableSize - spacing - firstColumn
                     return listOf(firstColumn, secondColumn)
                 }
