@@ -45,7 +45,7 @@ fun MovieComponent(
     Card(
         modifier = Modifier
             .height(200.dp)
-            .width(300.dp)
+            .width(250.dp)
             .selectable(
                 selected = true,
                 onClick = {

@@ -4,10 +4,12 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -16,9 +18,10 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.beatrice.moviesapp.data.model.Movie
 import kotlinx.coroutines.launch
@@ -27,7 +30,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun MoviesListComponent(
     movies: List<Movie>,
-    resultType: String = "Popular Movies",
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     val gridState = rememberLazyGridState()
@@ -51,52 +53,58 @@ fun MoviesListComponent(
             }
         }
     ) { paddingValues ->
-        LazyRow(Modifier.padding(vertical = 48.dp, horizontal = 24.dp)){
+        LazyVerticalGrid(
+            columns = object : GridCells {
+                override fun Density.calculateCrossAxisCellSizes(
+                    availableSize: Int,
+                    spacing: Int
+                ): List<Int> {
+                    val firstColumn = (availableSize - spacing) * 2/3
+                    val secondColumn = availableSize - spacing - firstColumn
+                    return listOf(firstColumn, secondColumn)
+                }
+
+            },
+            state = gridState,
+            contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
             items(movies) { movie ->
                 MovieComponent(
                     movie = movie,
+                    navigateToMovieDetails = navigateToMovieDetails
                 )
             }
         }
-//        LazyVerticalGrid(
-//
-//            columns = GridCells.Adaptive(256.dp),
-//            state = gridState,
-//            contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
-//            verticalArrangement = Arrangement.spacedBy(16.dp),
-//            horizontalArrangement = Arrangement.spacedBy(8.dp)
-//        ) {
-//            item {
-//                Text(
-//                    text = resultType,
-//                    modifier = Modifier.fillMaxWidth(),
-//                    style = TextStyle(
-//                        fontWeight = FontWeight.SemiBold,
-//                        color = Color.DarkGray,
-//                        fontSize = 22.sp,
-//                        fontFamily = FontFamily.Serif
-//                    ),
-//                    textAlign = TextAlign.Center
-//                )
-//            }
-//            items(movies) { movie ->
-//                MovieComponent(
-//                    movie = movie,
-//                    navigateToMovieDetails = navigateToMovieDetails
-//                )
-//            }
-//        }
     }
 }
 
 
-@Preview
+@Preview(device = Devices.PHONE)
 @Composable
-fun MoviesListComponentPreview() {
+fun MoviesListComponentPreviewPhone() {
     Surface(color = Color.White) {
         MoviesListComponent(movies = movieList)
     }
 }
+
+@Preview(device = Devices.FOLDABLE)
+@Composable
+fun MoviesListComponentPreviewFoldable() {
+    Surface(color = Color.White) {
+        MoviesListComponent(movies = movieList)
+    }
+}
+
+@Preview(device = Devices.TABLET)
+@Composable
+fun MoviesListComponentPreviewTablet() {
+    Surface(color = Color.White) {
+        MoviesListComponent(movies = movieList)
+    }
+}
+
 
 val movieList = listOf(
     Movie(
