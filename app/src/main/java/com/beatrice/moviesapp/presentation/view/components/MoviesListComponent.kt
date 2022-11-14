@@ -5,8 +5,11 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -53,6 +56,9 @@ fun MoviesListComponent(
             }
         }
     ) { paddingValues ->
+        /**
+         * Custom grids
+         */
         LazyVerticalGrid(
             columns = object : GridCells {
                 override fun Density.calculateCrossAxisCellSizes(
@@ -77,6 +83,35 @@ fun MoviesListComponent(
                 )
             }
         }
+        /**
+         * GridItemSpan
+         * maxLinesSpan
+         * maxCurrentLineSpan
+         */
+//        LazyVerticalGrid(
+//            columns = GridCells.Fixed(2),
+//            state = gridState,
+//            contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
+//            verticalArrangement = Arrangement.spacedBy(16.dp),
+//            horizontalArrangement = Arrangement.spacedBy(16.dp)
+//        ) {
+//            movies.forEachIndexed { index, movie ->
+//                if (index == 0) {
+//                    item(
+//                        span = { GridItemSpan(maxLineSpan) }
+//                    ) {
+//                        MovieComponent(movie = movie)
+//                    }
+//                } else {
+//                    item(
+//                        span = { GridItemSpan(if (index % 4 == 0) 2 else 1) }
+//                    ) {
+//                        MovieComponent(movie = movie)
+//                    }
+//                }
+//            }
+//        }
+
     }
 }
 
