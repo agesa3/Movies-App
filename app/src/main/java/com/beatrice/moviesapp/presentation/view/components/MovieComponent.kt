@@ -73,7 +73,7 @@ fun MovieComponent(
             ConstraintLayout {
                 val (titleText, dateText, divider1, langText, overviewText) = createRefs()
                 Text(
-                    text = movie.title,
+                    text = movie.title?: "",
                     modifier = Modifier.constrainAs(titleText) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -86,7 +86,7 @@ fun MovieComponent(
                     )
                 )
                 Text(
-                    text = movie.releaseDate,
+                    text = movie.releaseDate?: "",
                     modifier = Modifier.constrainAs(dateText) {
                         top.linkTo(titleText.bottom, 10.dp)
                         start.linkTo(parent.start)
@@ -110,7 +110,7 @@ fun MovieComponent(
                         .width(1.dp)
                 )
                 Text(
-                    text = movie.language,
+                    text = movie.language?: "",
                     modifier = Modifier
                         .constrainAs(langText) {
                             top.linkTo(titleText.bottom, 10.dp)
@@ -123,7 +123,7 @@ fun MovieComponent(
                     )
                 )
                 Text(
-                    text = "${movie.overview.take(70)} ...",
+                    text = "${movie.overview?.take(70)} ...",
                     modifier = Modifier
                         .constrainAs(overviewText) {
                             top.linkTo(dateText.bottom, 10.dp)
@@ -131,7 +131,7 @@ fun MovieComponent(
                         },
                     style = TextStyle(
                         fontFamily = FontFamily.Serif,
-                        fontSize = 16.sp,
+                        fontSize = 10.sp,
                         color = Color.Gray
                     )
                 )

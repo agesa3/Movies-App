@@ -7,16 +7,16 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Movie(
     val id: Int,
-    val title: String,
-    val originalTitle: String,
-    val language: String,
-    val releaseDate: String,
-    val voteCount: Int,
-    val voteAverage: Double,
-    val popularity: Double,
-    val posterPath: String,
-    val backdropPath: String,
-    val overview: String
+    val title: String?="",
+    val originalTitle: String?= "",
+    val language: String?= "",
+    val releaseDate: String?= "",
+    val voteCount: Int?= 0,
+    val voteAverage: Double?= 0.0,
+    val popularity: Double?= 0.0,
+    val posterPath: String?= "",
+    val backdropPath: String?= "",
+    val overview: String?= "",
 ): Parcelable
 
 fun MovieNetworkResult.toMoviesList(): List<Movie> =results.map {
