@@ -1,9 +1,9 @@
-package com.beatrice.moviesapp.database
+package com.beatrice.moviesapp.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.beatrice.moviesapp.database.dao.MovieDao
-import com.beatrice.moviesapp.database.model.MovieEntity
+import com.beatrice.moviesapp.data.database.dao.MovieDao
+import com.beatrice.moviesapp.data.database.model.MovieEntity
 
 @Database(
     entities = [

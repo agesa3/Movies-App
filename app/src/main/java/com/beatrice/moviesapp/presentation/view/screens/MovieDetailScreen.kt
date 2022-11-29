@@ -28,8 +28,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.beatrice.moviesapp.R
-import com.beatrice.moviesapp.data.model.Movie
-import com.beatrice.moviesapp.presentation.view.components.movieList
+import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -39,16 +39,16 @@ fun MovieDetailScreen(
     moviesViewModel: MoviesViewModel = hiltViewModel()
 ) {
     val movieState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
-    val movie = movieList.find { it.id == movieId  }
-//    val movie: Movie? = when (movieState) {
-//        is MoviesViewState.MoviesList -> {
-//         val test =   movieState.movies.find { movie -> movie.id == movieId }
-//            test
-//        }
-//        else -> {
-//            null
-//        }
-//    }
+    val movie: Movie? = when (movieState) {
+        is MoviesViewState.MoviesList -> {
+            val test = movieState.movies.find { movie -> movie.id == movieId }
+            test
+        }
+
+        else -> {
+            null
+        }
+    }
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -65,7 +65,7 @@ fun MovieDetailScreen(
             modifier = Modifier.clip(RoundedCornerShape(27.dp))
         )
         Text(
-            text = movie?.title ?: "" ,
+            text = movie?.title ?: "",
             style = TextStyle(
                 fontFamily = FontFamily.Serif,
                 fontSize = 24.sp,
@@ -88,7 +88,6 @@ fun MovieDetailScreen(
                 color = Color.DarkGray
             )
         )
-        // TODO: Add other views for more details and action button
     }
 }
 

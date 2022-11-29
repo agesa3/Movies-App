@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.presentation.view.network.model
+package com.beatrice.moviesapp.data.network.model
 
 data class MovieNetworkResult(
     val page: Int,

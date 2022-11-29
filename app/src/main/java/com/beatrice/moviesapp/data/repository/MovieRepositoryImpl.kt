@@ -1,10 +1,11 @@
-package com.beatrice.moviesapp.data
+package com.beatrice.moviesapp.data.repository
 
-import com.beatrice.moviesapp.data.model.Movie
-import com.beatrice.moviesapp.data.model.toMoviesList
-import com.beatrice.moviesapp.database.dao.MovieDao
-import com.beatrice.moviesapp.presentation.view.network.datasource.MoviesDataSource
-import com.beatrice.moviesapp.presentation.view.network.util.NetworkResult
+import com.beatrice.moviesapp.data.database.dao.MovieDao
+import com.beatrice.moviesapp.data.network.datasource.MoviesDataSource
+import com.beatrice.moviesapp.data.network.util.NetworkResult
+import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.toMoviesList
+import com.beatrice.moviesapp.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

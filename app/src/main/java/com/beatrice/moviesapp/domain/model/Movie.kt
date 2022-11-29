@@ -1,7 +1,7 @@
-package com.beatrice.moviesapp.data.model
+package com.beatrice.moviesapp.domain.model
 
 import android.os.Parcelable
-import com.beatrice.moviesapp.presentation.view.network.model.MovieNetworkResult
+import com.beatrice.moviesapp.data.network.model.MovieNetworkResult
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

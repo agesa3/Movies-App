@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.database.model
+package com.beatrice.moviesapp.data.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,7 +1,7 @@
 package com.beatrice.moviesapp.presentation.model
 
 import android.os.Parcelable
-import com.beatrice.moviesapp.data.model.Movie
+import com.beatrice.moviesapp.domain.model.Movie
 import kotlinx.parcelize.Parcelize
 
 sealed class MoviesViewState: Parcelable {

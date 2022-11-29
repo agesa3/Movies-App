@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.presentation.view.network.util
+package com.beatrice.moviesapp.data.network.util
 
 sealed class NetworkResult<T: Any> {
     data class Success<T: Any>(val data: T): NetworkResult<T>()
