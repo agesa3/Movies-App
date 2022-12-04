@@ -1,8 +1,8 @@
-package com.beatrice.moviesapp.database.di
+package com.beatrice.moviesapp.data.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.beatrice.moviesapp.database.MoviesDatabase
+import com.beatrice.moviesapp.data.database.MoviesDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

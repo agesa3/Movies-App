@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.presentation.view.network.util
+package com.beatrice.moviesapp.data.network.util
 
 import retrofit2.HttpException
 import retrofit2.Response

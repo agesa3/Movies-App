@@ -1,7 +1,7 @@
-package com.beatrice.moviesapp.presentation.view.network.di
+package com.beatrice.moviesapp.data.network.di
 
-import com.beatrice.moviesapp.presentation.view.network.datasource.MoviesDataSource
-import com.beatrice.moviesapp.presentation.view.network.datasource.MoviesDataSourceImpl
+import com.beatrice.moviesapp.data.network.datasource.MoviesDataSource
+import com.beatrice.moviesapp.data.network.datasource.MoviesDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

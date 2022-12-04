@@ -1,6 +1,6 @@
-package com.beatrice.moviesapp.presentation.view.network
+package com.beatrice.moviesapp.data.network
 
-import com.beatrice.moviesapp.presentation.view.network.model.MovieNetworkResult
+import com.beatrice.moviesapp.data.network.model.MovieNetworkResult
 import retrofit2.Response
 import retrofit2.http.GET
 

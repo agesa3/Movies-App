@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.database.dao
+package com.beatrice.moviesapp.data.database.dao
 
 import androidx.room.Dao
 

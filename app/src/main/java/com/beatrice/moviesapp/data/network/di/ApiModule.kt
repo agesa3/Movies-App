@@ -1,7 +1,7 @@
-package com.beatrice.moviesapp.presentation.view.network.di
+package com.beatrice.moviesapp.data.network.di
 
 import com.beatrice.moviesapp.BuildConfig.BASE_URL
-import com.beatrice.moviesapp.presentation.view.network.ApiService
+import com.beatrice.moviesapp.data.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
