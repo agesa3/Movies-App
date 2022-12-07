@@ -131,7 +131,7 @@ fun MovieComponent(
                         },
                     style = TextStyle(
                         fontFamily = FontFamily.Serif,
-                        fontSize = 16.sp,
+                        fontSize = 10.sp,
                         color = Color.Gray
                     )
                 )
