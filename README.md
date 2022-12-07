@@ -1,2 +1,4 @@
-# Movies-App-
-Movies App implemented using jetpack compose. Lazy layouts, Hilt, Retrofit, TDmovies API, Kotlin Coroutines/Flow
+## Movies App
+A sample app implementing Jetpack Compose lazy laayouts: Lazy Columns, Lazy grids, custom grids 
+
+
