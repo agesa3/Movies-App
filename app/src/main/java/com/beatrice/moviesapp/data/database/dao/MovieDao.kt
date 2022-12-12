@@ -8,7 +8,7 @@ import com.beatrice.moviesapp.data.database.model.MovieEntity
 import com.beatrice.moviesapp.domain.model.Movie
 
 @Dao
-interface MovieDao : BaseDao<MovieEntity>{
+interface MovieDao {
     @Query("SELECT * FROM movie_table")
     suspend fun getMovies():List<MovieEntity>
 
