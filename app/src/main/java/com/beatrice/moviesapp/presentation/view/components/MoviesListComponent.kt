@@ -53,7 +53,7 @@ fun MoviesListComponent(
                 }
             }
         }
-    ) { paddingValues ->
+    ) { _ ->
         /**
          * 1. Custom grids
          */
