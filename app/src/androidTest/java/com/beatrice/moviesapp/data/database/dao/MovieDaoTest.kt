@@ -5,10 +5,8 @@ import com.beatrice.moviesapp.data.database.MoviesDatabase
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
-
 import androidx.test.platform.app.InstrumentationRegistry
 import com.beatrice.moviesapp.resources.fakeMovieList
-import com.google.common.truth.Truth.assertThat
 import org.junit.Assert
 import org.junit.Test
 
@@ -52,7 +50,7 @@ class MovieDaoTest {
             movieDao.insertMovies(listOf(fakeMovieList))
             movieDao.deleteMovies()
             val usersFollowers = movieDao.getMovies()
-            assertThat(usersFollowers.isEmpty())
+            assert(usersFollowers.isEmpty())
         }
     }
 
