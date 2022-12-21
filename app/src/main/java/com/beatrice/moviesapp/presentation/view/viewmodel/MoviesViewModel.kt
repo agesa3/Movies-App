@@ -8,7 +8,7 @@ import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.util.TimeCapsule
 import com.beatrice.moviesapp.presentation.util.TimeTravelCapsule
-import com.beatrice.moviesapp.data.network.util.NetworkResult
+import com.beatrice.moviesapp.core.network.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel

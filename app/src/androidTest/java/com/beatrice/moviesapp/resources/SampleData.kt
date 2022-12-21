@@ -1,6 +1,6 @@
 package com.beatrice.moviesapp.resources
 
-import com.beatrice.moviesapp.data.database.model.MovieEntity
+import com.beatrice.moviesapp.core.database.model.MovieEntity
 
 val fakeMovieList = MovieEntity(
     id = 123,
