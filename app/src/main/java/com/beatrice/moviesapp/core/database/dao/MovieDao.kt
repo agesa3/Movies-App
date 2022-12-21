@@ -11,7 +11,8 @@ interface MovieDao {
     @Query("SELECT * FROM movie_table")
     suspend fun getMovies():List<MovieEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertMovies(list: List<MovieEntity>)
 
     @Query("DELETE FROM movie_table")
