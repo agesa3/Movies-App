@@ -22,7 +22,8 @@ fun MovieNetworkResult.toMovieEntityList(): List<MovieEntity> {
             popularity = it.popularity ?: 0.0,
             posterPath = it.poster_path ?: "",
             backdropPath = it.backdrop_path ?: "",
-            overview = it.overview ?: ""
+            overview = it.overview ?: "",
+            tag = null
         )
     } ?: emptyList()
 }

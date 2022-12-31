@@ -21,7 +21,4 @@ class DatabaseModule {
     @Provides
     fun provideMovieDao(moviesDatabase: MoviesDatabase) = moviesDatabase.movieDao()
 
-    @Provides
-    fun provideChangeListVersionDao(moviesDatabase: MoviesDatabase) = moviesDatabase.changeListVersionDao()
-
 }

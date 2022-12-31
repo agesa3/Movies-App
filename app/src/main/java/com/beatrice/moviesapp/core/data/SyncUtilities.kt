@@ -1,20 +1,18 @@
 package com.beatrice.moviesapp.core.data
 
-import com.beatrice.moviesapp.core.data.models.ChangeListVersions
 import logcat.logcat
 
-// TODO: Documentation
+/**
+ * Interface marker for a class that manages synchronization between local data and a remote
+ * source for a [Syncable].
+ */
 interface Synchronizer {
-    suspend fun getLatestChangeListVersions(): ChangeListVersions
-    suspend fun updateChangeListVersions()
-
-    // TODO: Add the last part
-
+    /**
+     * Syntactic sugar to call [Syncable.syncWith] while omitting the synchronizer argument
+     */
+    suspend fun Syncable.sync() = this@sync.syncWith(this@Synchronizer)
 }
 
-/**
- *
- */
 interface Syncable {
     suspend fun syncWith(synchronizer: Synchronizer): Boolean
 }
@@ -27,35 +25,19 @@ private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
         Result.failure(exception = e)
     }
 
-suspend fun<T> Synchronizer.changeListSync( // TODO: Rename
-    versionReader: () -> Int,
+suspend fun <T> Synchronizer.changeListSync(
     itemsFetcher: suspend () -> Result<T>,
-    modelDeleter: suspend (Result<T>) -> Unit,
-    modelUpdater: suspend (Result<T>) -> Unit,
-    versionUpdater: (Int) -> Unit
+    changeListFetcher: suspend (T?) -> (Map<String, List<Any>?>),
+    modelUpdater: suspend  (Map<String, List<Any>?>)-> Unit,
 ) = safeSyncCall {
-    /**
-     * Pseudo code
-     * 1. Get the latest version.
-     *     How am I saving the versions? Probably a database table
-     * 2. Comparison:
-     *      Are there new movies.
-     *      Old ones to be deleted
-     *      old ones to be updated... All the time this should happen
-     *      this forms my change
-     *
-     * 3. Make the updates
-     * 4. Return succes or failure
-    */
-    val currentVersion = versionReader()
+    // Fetch items from the network
     val result = itemsFetcher()
     if (result.isFailure) return@safeSyncCall true
 
-    modelUpdater(result)
-    modelDeleter(result)
+    // Prepare the change list before update local data sources
+    val changeList = changeListFetcher(result.getOrNull())
+    modelUpdater(changeList)
 
-
-    // TODO: Update the last version
 }.isSuccess
 
 

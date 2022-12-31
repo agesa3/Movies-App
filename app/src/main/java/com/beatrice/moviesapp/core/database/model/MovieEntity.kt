@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import com.beatrice.moviesapp.core.network.model.MovieNetworkResult
 import com.beatrice.moviesapp.domain.model.Movie
 
-// TODO: Update to have new arrivals property, updated etc.
 @Entity(tableName = "movie_table")
 data class MovieEntity(
     @PrimaryKey
@@ -19,7 +18,8 @@ data class MovieEntity(
     val popularity: Double,
     val posterPath: String,
     val backdropPath: String,
-    val overview: String
+    val overview: String,
+    var tag: String?
 )
 
 fun MovieEntity.toMovie(): Movie {
@@ -34,7 +34,9 @@ fun MovieEntity.toMovie(): Movie {
             popularity = this.popularity,
             posterPath = this.posterPath,
             backdropPath = this.backdropPath,
-            overview = this.overview
+            overview = this.overview,
+        tag = this.tag
+
         )
     }
 
@@ -50,7 +52,8 @@ fun List<MovieEntity>.toMoviesList(): List<Movie> = this.map {
         popularity = it.popularity,
         posterPath = it.posterPath,
         backdropPath = it.backdropPath,
-        overview = it.overview
+        overview = it.overview,
+        tag = it.tag
     )
 }
 
