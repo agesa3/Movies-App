@@ -6,5 +6,5 @@ import com.beatrice.moviesapp.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository: Syncable {
-    fun getPopularMovies(): Flow<NetworkResult<List<Movie>>>
+    fun getPopularMovies(): Flow<List<Movie>>
 }

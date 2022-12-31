@@ -1,6 +1,7 @@
 package com.beatrice.moviesapp.domain.model
 
 import android.os.Parcelable
+import com.beatrice.moviesapp.core.database.model.MovieEntity
 import com.beatrice.moviesapp.core.network.model.MovieNetworkResult
 import kotlinx.parcelize.Parcelize
 
@@ -19,23 +20,7 @@ data class Movie(
     val overview: String,
 ) : Parcelable
 
-fun MovieNetworkResult.toMoviesList(): List<Movie> {
-    return results?.map {
-        Movie(
-            id = it.id ?: 0,
-            title = it.title ?: "",
-            originalTitle = it.original_title ?: "",
-            language = it.original_language ?: "",
-            releaseDate = it.release_date ?: "",
-            voteCount = it.vote_count ?: 0,
-            voteAverage = it.vote_average ?: 0.0,
-            popularity = it.popularity ?: 0.0,
-            posterPath = it.poster_path ?: "",
-            backdropPath = it.backdrop_path ?: "",
-            overview = it.overview ?: ""
-        )
-    } ?: emptyList()
-}
+
 
 
 

@@ -2,10 +2,13 @@ package com.beatrice.moviesapp.core.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.beatrice.moviesapp.core.network.model.MovieNetworkResult
+import com.beatrice.moviesapp.domain.model.Movie
 
+// TODO: Update to have new arrivals property, updated etc.
 @Entity(tableName = "movie_table")
 data class MovieEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val title: String,
     val originalTitle: String,
@@ -18,3 +21,37 @@ data class MovieEntity(
     val backdropPath: String,
     val overview: String
 )
+
+fun MovieEntity.toMovie(): Movie {
+    return Movie(
+            id = this.id,
+            title = this.title,
+            originalTitle = this.originalTitle,
+            language = this.language,
+            releaseDate = this.releaseDate,
+            voteCount = this.voteCount,
+            voteAverage = this.voteAverage,
+            popularity = this.popularity,
+            posterPath = this.posterPath,
+            backdropPath = this.backdropPath,
+            overview = this.overview
+        )
+    }
+
+fun List<MovieEntity>.toMoviesList(): List<Movie> = this.map {
+    Movie(
+        id = it.id,
+        title = it.title,
+        originalTitle = it.originalTitle,
+        language = it.language,
+        releaseDate = it.releaseDate,
+        voteCount = it.voteCount,
+        voteAverage = it.voteAverage,
+        popularity = it.popularity,
+        posterPath = it.posterPath,
+        backdropPath = it.backdropPath,
+        overview = it.overview
+    )
+}
+
+

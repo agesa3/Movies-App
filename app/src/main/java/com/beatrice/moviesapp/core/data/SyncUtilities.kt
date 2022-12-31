@@ -8,6 +8,8 @@ interface Synchronizer {
     suspend fun getLatestChangeListVersions(): ChangeListVersions
     suspend fun updateChangeListVersions()
 
+    // TODO: Add the last part
+
 }
 
 /**
@@ -17,53 +19,43 @@ interface Syncable {
     suspend fun syncWith(synchronizer: Synchronizer): Boolean
 }
 
-
 private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
     try {
         Result.success(block())
     } catch (e: Exception) {
-        logcat("Exception") { "Failed to evaluate a suspendRunCatchingBlock. Returning failure Result $e" }
+        logcat("Exception") { "Failed with an exception $e" }
         Result.failure(exception = e)
     }
 
-suspend fun Synchronizer.changeListSync() = safeSyncCall {
+suspend fun<T> Synchronizer.changeListSync( // TODO: Rename
+    versionReader: () -> Int,
+    itemsFetcher: suspend () -> Result<T>,
+    modelDeleter: suspend (Result<T>) -> Unit,
+    modelUpdater: suspend (Result<T>) -> Unit,
+    versionUpdater: (Int) -> Unit
+) = safeSyncCall {
     /**
-     * Update moveLists version.. Only when updating movies has been successful
-     * Insert new movies
-     * Delete old non-existence movies
-     * .. Check if an update is required... this mighty be hard, or even unnecessary
-     * if no updates required return true
-     */
-}
+     * Pseudo code
+     * 1. Get the latest version.
+     *     How am I saving the versions? Probably a database table
+     * 2. Comparison:
+     *      Are there new movies.
+     *      Old ones to be deleted
+     *      old ones to be updated... All the time this should happen
+     *      this forms my change
+     *
+     * 3. Make the updates
+     * 4. Return succes or failure
+    */
+    val currentVersion = versionReader()
+    val result = itemsFetcher()
+    if (result.isFailure) return@safeSyncCall true
+
+    modelUpdater(result)
+    modelDeleter(result)
 
 
-
-
-/**
- * suspend fun Synchronizer.changeListSync(
-versionReader: (ChangeListVersions) -> Int,
-changeListFetcher: suspend (Int) -> List<NetworkChangeList>,
-versionUpdater: ChangeListVersions.(Int) -> ChangeListVersions,
-modelDeleter: suspend (List<String>) -> Unit,
-modelUpdater: suspend (List<String>) -> Unit,
-) = suspendRunCatching {
-// Fetch the change list since last sync (akin to a git fetch)
-val currentVersion = versionReader(getChangeListVersions())
-val changeList = changeListFetcher(currentVersion)
-if (changeList.isEmpty()) return@suspendRunCatching true
-
-val (deleted, updated) = changeList.partition(NetworkChangeList::isDelete)
-
-// Delete models that have been deleted server-side
-modelDeleter(deleted.map(NetworkChangeList::id))
-
-// Using the change list, pull down and save the changes (akin to a git pull)
-modelUpdater(updated.map(NetworkChangeList::id))
-
-// Update the last synced version (akin to updating local git HEAD)
-val latestVersion = changeList.last().changeListVersion
-updateChangeListVersions {
-versionUpdater(latestVersion)
-}
+    // TODO: Update the last version
 }.isSuccess
- */
+
+
