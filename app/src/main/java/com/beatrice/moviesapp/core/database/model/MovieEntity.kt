@@ -2,8 +2,7 @@ package com.beatrice.moviesapp.core.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.beatrice.moviesapp.core.network.model.MovieNetworkResult
-import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.MovieDomainModel
 
 @Entity(tableName = "movie_table")
 data class MovieEntity(
@@ -14,7 +13,7 @@ data class MovieEntity(
     val language: String,
     val releaseDate: String,
     val voteCount: Int,
-    val voteAverage: Double,
+    var voteAverage: Double,
     val popularity: Double,
     val posterPath: String,
     val backdropPath: String,
@@ -22,8 +21,8 @@ data class MovieEntity(
     var tag: String?
 )
 
-fun MovieEntity.toMovie(): Movie {
-    return Movie(
+fun MovieEntity.toMovie(): MovieDomainModel {
+    return MovieDomainModel(
             id = this.id,
             title = this.title,
             originalTitle = this.originalTitle,
@@ -40,8 +39,8 @@ fun MovieEntity.toMovie(): Movie {
         )
     }
 
-fun List<MovieEntity>.toMoviesList(): List<Movie> = this.map {
-    Movie(
+fun List<MovieEntity>.toMoviesList(): List<MovieDomainModel> = this.map {
+    MovieDomainModel(
         id = it.id,
         title = it.title,
         originalTitle = it.originalTitle,

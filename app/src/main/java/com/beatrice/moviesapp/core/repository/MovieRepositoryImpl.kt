@@ -8,18 +8,17 @@ import com.beatrice.moviesapp.core.database.model.MovieEntity
 import com.beatrice.moviesapp.core.database.model.toMoviesList
 import com.beatrice.moviesapp.core.network.datasource.MoviesDataSource
 import com.beatrice.moviesapp.core.network.model.toMovieEntityList
-import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.MovieDomainModel
 import com.beatrice.moviesapp.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.util.Locale.filter
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieDao: MovieDao,
     private val moviesDataSource: MoviesDataSource
 ) : MovieRepository {
-    override fun getPopularMovies(): Flow<List<Movie>> = flow {
+    override fun getPopularMovies(): Flow<List<MovieDomainModel>> = flow {
         val movies = movieDao.getMovies()
         val moviesList = movies.toMoviesList()
         emit(moviesList)
@@ -27,56 +26,71 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
         return synchronizer.changeListSync(
-
             itemsFetcher = {
                 moviesDataSource.getPopularMovies()
             },
             changeListFetcher = { movieResult ->
-                val fetchedMovies = movieResult?.toMovieEntityList()?.asSequence()
+                val fetchedMovies = movieResult?.toMovieEntityList()
                 val fetchedMoviesIds = fetchedMovies?.map { it.id }
                 val oldMovies = movieDao.getMovies()
                 val oldMoviesIds = oldMovies.map { it.id }
 
-                val newMovies = fetchedMovies
-                    ?.filter { it.id !in oldMoviesIds }
-                    ?.map {
-                        it.tag = MovieEnums.NEW.name
-                    }?.toList()
+                /**
+                 * set [NEW] tag on new movies
+                 */
+                fetchedMovies?.filter {
+                    it.id !in oldMoviesIds
+                }?.forEach {
+                    it.tag = MovieEnums.NEW.name
+                }
+
+                /**
+                 * Filter old movies that have been updated
+                 */
                 val moviesToUpdate = fetchedMovies?.filter {
                     it.id in oldMoviesIds
-                }?.toList()
+                }
 
+                /**
+                 * Filted old movies that have been removed and delete them locally
+                 */
                 val moviesToDelete =
                     oldMovies.filter { (fetchedMoviesIds != null) && (it.id !in fetchedMoviesIds) }
 
                 val changeListCollection = mapOf(
-                    "new" to newMovies,
+                    "new" to fetchedMovies?.toList(),
                     "toUpdate" to moviesToUpdate,
                     "toDelete" to moviesToDelete
                 )
                 changeListCollection
             },
             modelUpdater = { changeList ->
-                // Save new movies
-                val newMovies = changeList["new"]
-                newMovies?.let {
-                    val movies = it as List<MovieEntity>
-                    movieDao.insertMovies(movies)
+                /**
+                 * Delete movies that have been removed
+                 */
+                val moviesToDelete = changeList["toDelete"]
+                moviesToDelete?.let { alist ->
+                    val movies = alist as List<MovieEntity>
+                    val moviesIds = movies.map { it.id }
+                    movieDao.deleteMovies(moviesIds)
                 }
-
+                /**
+                 * Update existing movies
+                 */
                 val moviesToUpdate = changeList["toUpdate"]
                 moviesToUpdate?.let {
                     val movies = it as List<MovieEntity>
                     movieDao.updateMovies(movies)
                 }
 
-                val moviesToDelete = changeList["toDelete"]
-                moviesToDelete?.let {alist ->
-                    val movies = alist as List<MovieEntity>
-                    val moviesIds = movies.map { it.id }
-                    movieDao.deleteMovies(moviesIds)
+                /**
+                 * Save new movies
+                 */
+                val newMovies = changeList["new"]
+                newMovies?.let {
+                    val movies = it as List<MovieEntity>
+                    movieDao.insertMovies(movies)
                 }
-
             },
         )
     }

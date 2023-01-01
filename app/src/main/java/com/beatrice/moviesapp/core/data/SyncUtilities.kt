@@ -25,8 +25,12 @@ private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
         Result.failure(exception = e)
     }
 
-suspend fun <T> Synchronizer.changeListSync(
-    itemsFetcher: suspend () -> Result<T>,
+/**
+ * FIXME: Do I need the Synchronizer receiver
+ * I mighty remove it
+ */
+suspend fun<T> Synchronizer.changeListSync(
+    itemsFetcher: suspend () -> Result<T?>,
     changeListFetcher: suspend (T?) -> (Map<String, List<Any>?>),
     modelUpdater: suspend  (Map<String, List<Any>?>)-> Unit,
 ) = safeSyncCall {

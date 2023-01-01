@@ -4,7 +4,7 @@ import com.beatrice.moviesapp.core.database.model.MovieEntity
 
 data class MovieNetworkResult(
     val page: Int?,
-    val results: List<Result>?,
+    val results: List<Movie>?,
     val total_pages: Int?,
     val total_results: Int?
 )

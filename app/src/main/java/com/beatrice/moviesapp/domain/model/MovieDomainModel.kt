@@ -1,12 +1,10 @@
 package com.beatrice.moviesapp.domain.model
 
 import android.os.Parcelable
-import com.beatrice.moviesapp.core.database.model.MovieEntity
-import com.beatrice.moviesapp.core.network.model.MovieNetworkResult
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Movie(
+data class MovieDomainModel(
     val id: Int,
     val title: String,
     val originalTitle: String,
@@ -18,7 +16,7 @@ data class Movie(
     val posterPath: String,
     val backdropPath: String,
     val overview: String,
-    val tag: String?
+    val tag: String? = null
 ) : Parcelable
 
 

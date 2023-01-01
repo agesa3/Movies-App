@@ -1,7 +1,7 @@
 package com.beatrice.moviesapp.presentation.model
 
 import android.os.Parcelable
-import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.MovieDomainModel
 import kotlinx.parcelize.Parcelize
 
 sealed class MoviesViewState: Parcelable {
@@ -10,7 +10,7 @@ sealed class MoviesViewState: Parcelable {
     @Parcelize
     object Loading: MoviesViewState()
     @Parcelize
-    data class MoviesList(val movies: List<Movie>): MoviesViewState()
+    data class MoviesList(val movieDomainModels: List<MovieDomainModel>): MoviesViewState()
     @Parcelize
     data class Error(val message: String): MoviesViewState()
 }

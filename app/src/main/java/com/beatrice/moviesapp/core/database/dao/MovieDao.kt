@@ -2,11 +2,9 @@ package com.beatrice.moviesapp.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.beatrice.moviesapp.core.database.model.MovieEntity
-import com.beatrice.moviesapp.domain.model.Movie
 
 @Dao
 interface MovieDao {

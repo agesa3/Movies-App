@@ -2,7 +2,6 @@ package com.beatrice.moviesapp.presentation.view.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -32,11 +31,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.beatrice.moviesapp.R
-import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.MovieDomainModel
 
 @Composable
 fun MovieComponent(
-    movie: Movie,
+    movieDomainModel: MovieDomainModel,
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     /**
@@ -49,7 +48,7 @@ fun MovieComponent(
             .selectable(
                 selected = true,
                 onClick = {
-                    navigateToMovieDetails(movie.id)
+                    navigateToMovieDetails(movieDomainModel.id)
                 }),
         elevation = CardDefaults.cardElevation(4.dp),
         shape = RoundedCornerShape(16.dp)
@@ -64,7 +63,7 @@ fun MovieComponent(
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data("https://image.tmdb.org/t/p/w342${movie.posterPath}").build(),
+                    .data("https://image.tmdb.org/t/p/w342${movieDomainModel.posterPath}").build(),
                 placeholder = painterResource(id = R.drawable.ic_baseline_movie_24),
                 contentDescription = stringResource(R.string.movie_poster),
                 contentScale = ContentScale.Crop,
@@ -73,7 +72,7 @@ fun MovieComponent(
             ConstraintLayout {
                 val (titleText, dateText, divider1, langText, overviewText) = createRefs()
                 Text(
-                    text = movie.title,
+                    text = movieDomainModel.title,
                     modifier = Modifier.constrainAs(titleText) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -86,7 +85,7 @@ fun MovieComponent(
                     )
                 )
                 Text(
-                    text = movie.releaseDate,
+                    text = movieDomainModel.releaseDate,
                     modifier = Modifier.constrainAs(dateText) {
                         top.linkTo(titleText.bottom, 10.dp)
                         start.linkTo(parent.start)
@@ -110,7 +109,7 @@ fun MovieComponent(
                         .width(1.dp)
                 )
                 Text(
-                    text = movie.language,
+                    text = movieDomainModel.language,
                     modifier = Modifier
                         .constrainAs(langText) {
                             top.linkTo(titleText.bottom, 10.dp)
@@ -123,7 +122,7 @@ fun MovieComponent(
                     )
                 )
                 Text(
-                    text = "${movie.overview.take(70)} ...",
+                    text = "${movieDomainModel.overview.take(70)} ...",
                     modifier = Modifier
                         .constrainAs(overviewText) {
                             top.linkTo(dateText.bottom, 10.dp)
@@ -147,7 +146,7 @@ fun MovieComponent(
 fun MovieComponentPreview() {
     Surface(color = Color.White) {
         MovieComponent(
-            movie = Movie(
+            movieDomainModel = MovieDomainModel(
                 id = 0,
                 title = "Abc",
                 originalTitle = "ABC",
@@ -161,7 +160,8 @@ fun MovieComponentPreview() {
                 overview = "The quick brown fox jumped over a lazy dog." +
                         " The quick brown fox jumped over a lazy dog. " +
                         "The quick brown fox jumped over a lazy dog. " +
-                        "The quick brown fox jumped over a lazy dog."
+                        "The quick brown fox jumped over a lazy dog.",
+                tag = null
             )
         )
 

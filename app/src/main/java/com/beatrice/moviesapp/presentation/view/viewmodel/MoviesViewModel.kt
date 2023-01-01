@@ -58,25 +58,7 @@ class MoviesViewModel @Inject constructor(
         viewModelScope.launch(ioDispatcher) {
             movieRepository.getPopularMovies().collect { result ->
                 when (result) {
-                    is NetworkResult.Success -> {
-                        val newState = MoviesViewState.MoviesList(movies = result.data)
-                        timeCapsule.addState(newState)
-                        savedStateHandle[MOVIES_STATE_KEY] = newState
-                    }
-                    is NetworkResult.Error -> {
-                        val newState =
-                            MoviesViewState.Error(message = "TODO: Put appropriate message")
-                        timeCapsule.addState(newState)
-                        savedStateHandle[MOVIES_STATE_KEY] = newState
 
-                    }
-                    is NetworkResult.Exception -> {
-                        val newState =
-                            MoviesViewState.Error(message = "TODO: Put appropriate message")
-                        timeCapsule.addState(newState)
-                        savedStateHandle[MOVIES_STATE_KEY] = newState
-
-                    }
                 }
             }
         }
