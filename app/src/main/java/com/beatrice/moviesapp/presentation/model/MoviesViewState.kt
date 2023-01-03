@@ -10,7 +10,7 @@ sealed class MoviesViewState: Parcelable {
     @Parcelize
     object Loading: MoviesViewState()
     @Parcelize
-    data class MoviesList(val movieDomainModels: List<MovieDomainModel>): MoviesViewState()
+    data class Data(val movieDomainModels: List<MovieDomainModel>): MoviesViewState()
     @Parcelize
     data class Error(val message: String): MoviesViewState()
 }

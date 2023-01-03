@@ -10,11 +10,11 @@ interface Synchronizer {
     /**
      * Syntactic sugar to call [Syncable.syncWith] while omitting the synchronizer argument
      */
-    suspend fun Syncable.sync() = this@sync.syncWith(this@Synchronizer)
+    suspend fun Syncable.sync() = this@sync.syncWith()
 }
 
 interface Syncable {
-    suspend fun syncWith(synchronizer: Synchronizer): Boolean
+    suspend fun syncWith(): Boolean
 }
 
 private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
@@ -29,7 +29,7 @@ private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
  * FIXME: Do I need the Synchronizer receiver
  * I mighty remove it
  */
-suspend fun<T> Synchronizer.changeListSync(
+suspend fun<T> changeListSync(
     itemsFetcher: suspend () -> Result<T?>,
     changeListFetcher: suspend (T?) -> (Map<String, List<Any>?>),
     modelUpdater: suspend  (Map<String, List<Any>?>)-> Unit,

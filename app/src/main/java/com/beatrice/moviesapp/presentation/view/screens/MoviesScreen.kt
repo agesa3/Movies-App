@@ -14,6 +14,7 @@ import com.beatrice.moviesapp.presentation.view.components.ErrorMessageComponent
 import com.beatrice.moviesapp.presentation.view.components.MoviesListComponent
 import com.beatrice.moviesapp.presentation.view.components.ProgressIndicatorComponent
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
+import logcat.logcat
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -28,14 +29,16 @@ fun MovieScreen(
     }
 
     Scaffold() { paddingValues ->
+        logcat("WHAAAAT"){"IS The state? $moviesState"}
         when (moviesState) {
             is MoviesViewState.Idle -> {
-
+                logcat("WHAAAAT"){"Idle?"}
             }
             is MoviesViewState.Loading -> {
                 ProgressIndicatorComponent()
             }
-            is MoviesViewState.MoviesList -> {
+            is MoviesViewState.Data -> {
+                logcat("MOVIESsss") { "are ${moviesState.movieDomainModels}" }
                 MoviesListComponent(movieDomainModels = moviesState.movieDomainModels, navigateToMovieDetails = navigateToMovieDetails)
             }
             is MoviesViewState.Error -> {

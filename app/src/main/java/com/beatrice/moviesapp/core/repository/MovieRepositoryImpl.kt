@@ -12,6 +12,7 @@ import com.beatrice.moviesapp.domain.model.MovieDomainModel
 import com.beatrice.moviesapp.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import logcat.logcat
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -19,15 +20,20 @@ class MovieRepositoryImpl @Inject constructor(
     private val moviesDataSource: MoviesDataSource
 ) : MovieRepository {
     override fun getPopularMovies(): Flow<List<MovieDomainModel>> = flow {
+        syncWith()
         val movies = movieDao.getMovies()
         val moviesList = movies.toMoviesList()
         emit(moviesList)
     }
 
-    override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
-        return synchronizer.changeListSync(
+  // TODO: Sort migration and clean up
+    override suspend fun syncWith(): Boolean {
+      logcat("TAAASKS"){"Heeeere"}
+        return changeListSync(
             itemsFetcher = {
-                moviesDataSource.getPopularMovies()
+               val result = moviesDataSource.getPopularMovies()
+                logcat("TAAASKS"){"result is ${result.getOrNull()}"}
+                result
             },
             changeListFetcher = { movieResult ->
                 val fetchedMovies = movieResult?.toMovieEntityList()
@@ -52,7 +58,7 @@ class MovieRepositoryImpl @Inject constructor(
                 }
 
                 /**
-                 * Filted old movies that have been removed and delete them locally
+                 * Filter old movies that have been removed and delete them locally
                  */
                 val moviesToDelete =
                     oldMovies.filter { (fetchedMoviesIds != null) && (it.id !in fetchedMoviesIds) }

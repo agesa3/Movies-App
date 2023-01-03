@@ -111,6 +111,12 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
 
+    // WorkManager
+    val workVersion = "2.7.1"
+    implementation("androidx.work:work-runtime-ktx:$workVersion")
+
+
+
     // Test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")

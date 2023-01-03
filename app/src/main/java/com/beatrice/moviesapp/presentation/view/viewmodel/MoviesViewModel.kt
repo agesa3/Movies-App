@@ -8,7 +8,6 @@ import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.util.TimeCapsule
 import com.beatrice.moviesapp.presentation.util.TimeTravelCapsule
-import com.beatrice.moviesapp.core.network.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
@@ -27,7 +26,7 @@ class MoviesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _movieViewState: MutableStateFlow<MoviesViewState> =
-        MutableStateFlow(MoviesViewState.Loading)
+        MutableStateFlow(MoviesViewState.Loading)// TODO: Do I really need this?
 
     val moviesViewState: StateFlow<MoviesViewState> = savedStateHandle.getStateFlow(
         MOVIES_STATE_KEY, MoviesViewState.Idle)
@@ -57,9 +56,8 @@ class MoviesViewModel @Inject constructor(
     private fun getPopularMovies() {
         viewModelScope.launch(ioDispatcher) {
             movieRepository.getPopularMovies().collect { result ->
-                when (result) {
-
-                }
+                val newState = MoviesViewState.Data(result)
+                savedStateHandle[MOVIES_STATE_KEY] = newState
             }
         }
     }

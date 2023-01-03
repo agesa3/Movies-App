@@ -40,7 +40,7 @@ fun MovieDetailScreen(
 ) {
     val movieState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
     val movieDomainModel: MovieDomainModel? = when (movieState) {
-        is MoviesViewState.MoviesList -> {
+        is MoviesViewState.Data -> {
             val test = movieState.movieDomainModels.find { movie -> movie.id == movieId }
             test
         }
