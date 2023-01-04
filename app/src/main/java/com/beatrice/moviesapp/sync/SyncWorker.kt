@@ -1,6 +1,7 @@
 package com.beatrice.moviesapp.sync
 
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
@@ -9,6 +10,8 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.beatrice.moviesapp.core.data.Synchronizer
 import com.beatrice.moviesapp.domain.repository.MovieRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -16,24 +19,20 @@ import kotlinx.coroutines.withContext
 import logcat.logcat
 import java.util.concurrent.TimeUnit
 
-class SyncWorker(
-    context: Context,
-    params: WorkerParameters,
+@HiltWorker
+class SyncWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted params: WorkerParameters,
     private val moviesRepository: MovieRepository
 ) : CoroutineWorker(context, params), Synchronizer {
     override suspend fun doWork(): Result {
-        logcat("TAAASKS"){"do work getting started≠"}
-        moviesRepository.sync()
-        return Result.success()
-//      return  withContext(Dispatchers.IO) {
-//            logcat("TAAASKS"){"do work"}
-//            val syncSuccess = awaitAll(
-//                async { moviesRepository.sync() }
-//            ).all { it }
-//            logcat("TAAASKS"){"sync success? $syncSuccess"}
-//            if (syncSuccess) Result.success()
-//            else Result.retry()
-//        }
+        return withContext(Dispatchers.IO) {
+            val syncSuccess = awaitAll(
+                async { moviesRepository.sync() }
+            ).all { it }
+            if (syncSuccess) Result.success()
+            else Result.retry()
+        }
     }
 
 }
@@ -47,7 +46,8 @@ val workerConstraints = Constraints.Builder().apply {
 /**
  * Schedule worker to periodically fetch movies and sync the local storage
  */
-val periodicSyncTask = PeriodicWorkRequestBuilder<SyncWorker>(15, TimeUnit.MINUTES)
-//    .setConstraints(workerConstraints)
+val periodicSyncTask = PeriodicWorkRequestBuilder<SyncWorker>(1, TimeUnit.DAYS)
+    .setConstraints(workerConstraints)
     .build()
+
 val oneTimeTask = OneTimeWorkRequestBuilder<SyncWorker>().build()

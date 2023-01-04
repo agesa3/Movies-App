@@ -1,6 +1,5 @@
 package com.beatrice.moviesapp.core.repository
 
-import com.beatrice.moviesapp.core.data.Synchronizer
 import com.beatrice.moviesapp.core.data.changeListSync
 import com.beatrice.moviesapp.core.data.util.MovieEnums
 import com.beatrice.moviesapp.core.database.dao.MovieDao
@@ -15,18 +14,18 @@ import kotlinx.coroutines.flow.flow
 import logcat.logcat
 import javax.inject.Inject
 
+// TODO: Sort migration and clean up
+
 class MovieRepositoryImpl @Inject constructor(
     private val movieDao: MovieDao,
     private val moviesDataSource: MoviesDataSource
 ) : MovieRepository {
     override fun getPopularMovies(): Flow<List<MovieDomainModel>> = flow {
-        syncWith()
         val movies = movieDao.getMovies()
         val moviesList = movies.toMoviesList()
         emit(moviesList)
     }
 
-  // TODO: Sort migration and clean up
     override suspend fun syncWith(): Boolean {
       logcat("TAAASKS"){"Heeeere"}
         return changeListSync(

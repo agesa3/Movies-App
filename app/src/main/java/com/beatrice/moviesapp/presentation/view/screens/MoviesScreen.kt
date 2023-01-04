@@ -25,10 +25,11 @@ fun MovieScreen(
     val moviesState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
 
     LaunchedEffect(true) {
+        logcat("WHAAAAT"){"Sending eventsssss"}
         moviesViewModel.movieUiEvents.send(MovieUiEvent.FetchPopularMovies)
     }
 
-    Scaffold() { paddingValues ->
+    Scaffold() { _ ->
         logcat("WHAAAAT"){"IS The state? $moviesState"}
         when (moviesState) {
             is MoviesViewState.Idle -> {

@@ -101,9 +101,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.44.2")
+    kapt("com.google.dagger:hilt-compiler:2.44.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     // logcat
     implementation("com.squareup.logcat:logcat:0.1")
@@ -114,8 +116,6 @@ dependencies {
     // WorkManager
     val workVersion = "2.7.1"
     implementation("androidx.work:work-runtime-ktx:$workVersion")
-
-
 
     // Test
     testImplementation("junit:junit:4.13.2")
