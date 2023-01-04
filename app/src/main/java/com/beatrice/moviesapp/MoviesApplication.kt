@@ -9,7 +9,6 @@ import com.beatrice.moviesapp.sync.periodicSyncTask
 import dagger.hilt.android.HiltAndroidApp
 import logcat.AndroidLogcatLogger
 import logcat.LogPriority
-import logcat.logcat
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -28,7 +27,6 @@ class MoviesApplication : Application(), Configuration.Provider {
         schedulePeriodicTask()
     }
     private fun schedulePeriodicTask() {
-        logcat("TAAASKS") { "How many times was I called?" }
         workManager.enqueueUniquePeriodicWork(
             "syncWork", // TODO: Extract to a variable
             ExistingPeriodicWorkPolicy.KEEP,
