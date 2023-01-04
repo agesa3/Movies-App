@@ -11,6 +11,7 @@ import com.beatrice.moviesapp.presentation.util.TimeTravelCapsule
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 const val MOVIES_STATE_KEY = "movies_state"
+
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
     private val movieRepository: MovieRepository,
@@ -26,10 +28,11 @@ class MoviesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _movieViewState: MutableStateFlow<MoviesViewState> =
-        MutableStateFlow(MoviesViewState.Loading)// TODO: Do I really need this?
+        MutableStateFlow(MoviesViewState.Loading)
 
     val moviesViewState: StateFlow<MoviesViewState> = savedStateHandle.getStateFlow(
-        MOVIES_STATE_KEY, MoviesViewState.Idle)
+        MOVIES_STATE_KEY, MoviesViewState.Loading
+    )
 
     val movieUiEvents = Channel<MovieUiEvent>(Channel.BUFFERED)
 
@@ -55,9 +58,11 @@ class MoviesViewModel @Inject constructor(
 
     private fun getPopularMovies() {
         viewModelScope.launch(ioDispatcher) {
-            movieRepository.getPopularMovies().collect { result ->
-                val newState = MoviesViewState.Data(result)
+            delay(2000)
+            movieRepository.getPopularMovies().collect { moviesList ->
+                val newState = MoviesViewState.Data(moviesList)
                 savedStateHandle[MOVIES_STATE_KEY] = newState
+
             }
         }
     }

@@ -8,7 +8,6 @@ import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.beatrice.moviesapp.core.data.Synchronizer
 import com.beatrice.moviesapp.domain.repository.MovieRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -16,7 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
-import logcat.logcat
 import java.util.concurrent.TimeUnit
 
 @HiltWorker
@@ -24,7 +22,7 @@ class SyncWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
     private val moviesRepository: MovieRepository
-) : CoroutineWorker(context, params), Synchronizer {
+) : CoroutineWorker(context, params) {
     override suspend fun doWork(): Result {
         return withContext(Dispatchers.IO) {
             val syncSuccess = awaitAll(

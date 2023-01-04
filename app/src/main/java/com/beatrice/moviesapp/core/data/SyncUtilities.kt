@@ -3,19 +3,17 @@ package com.beatrice.moviesapp.core.data
 import logcat.logcat
 
 /**
- * Interface marker for a class that manages synchronization between local data and a remote
- * source for a [Syncable].
+ * Interface marker for a class that synchronizes with a remote sources.
+ *
  */
-interface Synchronizer {
+interface Syncable {
     /**
-     * Syntactic sugar to call [Syncable.syncWith] while omitting the synchronizer argument
+     * Synchronizes local database with data from remote sources
+     * Returns true when the sync is successful
      */
-    suspend fun Syncable.sync() = this@sync.syncWith()
+    suspend fun sync(): Boolean
 }
 
-interface Syncable {
-    suspend fun syncWith(): Boolean
-}
 
 private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
     try {
@@ -25,21 +23,25 @@ private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
         Result.failure(exception = e)
     }
 
-/**
- * FIXME: Do I need the Synchronizer receiver
- * I mighty remove it
- */
-suspend fun<T> changeListSync(
+
+suspend fun <T> changeListSync(
     itemsFetcher: suspend () -> Result<T?>,
     changeListFetcher: suspend (T?) -> (Map<String, List<Any>?>),
-    modelUpdater: suspend  (Map<String, List<Any>?>)-> Unit,
+    modelUpdater: suspend (Map<String, List<Any>?>) -> Unit,
 ) = safeSyncCall {
-    // Fetch items from the network
+    /**
+     *  Fetch items from the network
+     */
     val result = itemsFetcher()
-    if (result.isFailure) return@safeSyncCall true
+    if (result.isFailure) return@safeSyncCall false
 
-    // Prepare the change list before update local data sources
+    /**
+     * Prepare the change list before update local data sources
+     */
     val changeList = changeListFetcher(result.getOrNull())
+    /**
+     * Update local data source
+     */
     modelUpdater(changeList)
 
 }.isSuccess

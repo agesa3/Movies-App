@@ -11,11 +11,9 @@ import com.beatrice.moviesapp.domain.model.MovieDomainModel
 import com.beatrice.moviesapp.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import logcat.logcat
 import javax.inject.Inject
 
 // TODO: Sort migration and clean up
-
 class MovieRepositoryImpl @Inject constructor(
     private val movieDao: MovieDao,
     private val moviesDataSource: MoviesDataSource
@@ -26,12 +24,10 @@ class MovieRepositoryImpl @Inject constructor(
         emit(moviesList)
     }
 
-    override suspend fun syncWith(): Boolean {
-      logcat("TAAASKS"){"Heeeere"}
+    override suspend fun sync(): Boolean {
         return changeListSync(
             itemsFetcher = {
-               val result = moviesDataSource.getPopularMovies()
-                logcat("TAAASKS"){"result is ${result.getOrNull()}"}
+                val result = moviesDataSource.getPopularMovies()
                 result
             },
             changeListFetcher = { movieResult ->

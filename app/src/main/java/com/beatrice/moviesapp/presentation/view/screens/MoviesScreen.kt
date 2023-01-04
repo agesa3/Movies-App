@@ -25,21 +25,18 @@ fun MovieScreen(
     val moviesState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
 
     LaunchedEffect(true) {
-        logcat("WHAAAAT"){"Sending eventsssss"}
         moviesViewModel.movieUiEvents.send(MovieUiEvent.FetchPopularMovies)
     }
 
     Scaffold() { _ ->
-        logcat("WHAAAAT"){"IS The state? $moviesState"}
         when (moviesState) {
             is MoviesViewState.Idle -> {
-                logcat("WHAAAAT"){"Idle?"}
+                logcat("STATE"){"idle"}
             }
             is MoviesViewState.Loading -> {
                 ProgressIndicatorComponent()
             }
             is MoviesViewState.Data -> {
-                logcat("MOVIESsss") { "are ${moviesState.movieDomainModels}" }
                 MoviesListComponent(movieDomainModels = moviesState.movieDomainModels, navigateToMovieDetails = navigateToMovieDetails)
             }
             is MoviesViewState.Error -> {
