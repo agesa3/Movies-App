@@ -24,7 +24,7 @@ Build and run the project
    - Hilt - For Dependency Injection
    - Room - For persisting data locally
    - WorkManager - For scheduling tasks
-2. Coroutines - For Concurrency and Asynchronous tasks
+2. Kotlin Flow and Coroutines - For Concurrency and Asynchronous tasks
 3. Coil - For Image Loading and Caching
 4. Retrofit, Moshi, OkHttp3 - for network calls
 5. logcat 
