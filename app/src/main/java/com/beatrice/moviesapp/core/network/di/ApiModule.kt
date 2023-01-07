@@ -1,5 +1,6 @@
 package com.beatrice.moviesapp.core.network.di
 
+import com.beatrice.moviesapp.BuildConfig
 import com.beatrice.moviesapp.BuildConfig.BASE_URL
 import com.beatrice.moviesapp.core.network.ApiService
 import dagger.Module
@@ -46,8 +47,7 @@ object ApiModule {
     @Singleton
     @Provides
     fun provideAuthInterceptor() = Interceptor { chain ->
-        val accessToken =
-            "2ae5d568999b3495f940ef9dee2cff06"// TODO: Remove this in commit files
+        val accessToken = BuildConfig.TDMB_API_KEY
         val original = chain.request()
         val url = original.url.newBuilder().addQueryParameter("api_key", accessToken).build()
         val request = chain.request().newBuilder().url(url).build()

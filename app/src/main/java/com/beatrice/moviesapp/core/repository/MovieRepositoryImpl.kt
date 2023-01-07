@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-// TODO: Sort migration and clean up
 class MovieRepositoryImpl @Inject constructor(
     private val movieDao: MovieDao,
     private val moviesDataSource: MoviesDataSource

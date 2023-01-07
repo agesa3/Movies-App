@@ -11,6 +11,7 @@ import logcat.AndroidLogcatLogger
 import logcat.LogPriority
 import javax.inject.Inject
 
+
 @HiltAndroidApp
 class MoviesApplication : Application(), Configuration.Provider {
     @Inject
@@ -28,7 +29,7 @@ class MoviesApplication : Application(), Configuration.Provider {
     }
     private fun schedulePeriodicTask() {
         workManager.enqueueUniquePeriodicWork(
-            "syncWork", // TODO: Extract to a variable
+            "syncWork",
             ExistingPeriodicWorkPolicy.KEEP,
             periodicSyncTask,
         )
