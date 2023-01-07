@@ -28,7 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.beatrice.moviesapp.R
-import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.MovieDomainModel
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
 
@@ -39,9 +39,9 @@ fun MovieDetailScreen(
     moviesViewModel: MoviesViewModel = hiltViewModel()
 ) {
     val movieState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
-    val movie: Movie? = when (movieState) {
-        is MoviesViewState.MoviesList -> {
-            val test = movieState.movies.find { movie -> movie.id == movieId }
+    val movieDomainModel: MovieDomainModel? = when (movieState) {
+        is MoviesViewState.Data -> {
+            val test = movieState.movieDomainModels.find { movie -> movie.id == movieId }
             test
         }
 
@@ -58,14 +58,14 @@ fun MovieDetailScreen(
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data("https://image.tmdb.org/t/p/w342${movie?.posterPath}").build(),
+                .data("https://image.tmdb.org/t/p/w342${movieDomainModel?.posterPath}").build(),
             placeholder = painterResource(id = R.drawable.ic_baseline_movie_24),
             contentDescription = stringResource(R.string.movie_poster),
             contentScale = ContentScale.Crop,
             modifier = Modifier.clip(RoundedCornerShape(27.dp))
         )
         Text(
-            text = movie?.title ?: "",
+            text = movieDomainModel?.title ?: "",
             style = TextStyle(
                 fontFamily = FontFamily.Serif,
                 fontSize = 24.sp,
@@ -73,7 +73,7 @@ fun MovieDetailScreen(
             )
         )
         Text(
-            text = "Original title: ${movie?.originalTitle}",
+            text = "Original title: ${movieDomainModel?.originalTitle}",
             style = TextStyle(
                 fontFamily = FontFamily.Serif,
                 fontSize = 18.sp,
@@ -81,7 +81,7 @@ fun MovieDetailScreen(
             )
         )
         Text(
-            text = movie?.overview ?: "",
+            text = movieDomainModel?.overview ?: "",
             style = TextStyle(
                 fontFamily = FontFamily.Serif,
                 fontSize = 18.sp,
@@ -99,7 +99,7 @@ fun MovieDetailScreenPreview() {
     }
 }
 
-val movie = Movie(
+val movieDomainModel = MovieDomainModel(
     id = 0,
     title = "Abc",
     originalTitle = "ABC",

@@ -11,11 +11,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.view.components.ErrorMessageComponent
-import com.beatrice.moviesapp.presentation.view.components.MoviesFab
 import com.beatrice.moviesapp.presentation.view.components.MoviesListComponent
 import com.beatrice.moviesapp.presentation.view.components.ProgressIndicatorComponent
-import com.beatrice.moviesapp.presentation.view.components.movieList
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
+import logcat.logcat
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -29,16 +28,16 @@ fun MovieScreen(
         moviesViewModel.movieUiEvents.send(MovieUiEvent.FetchPopularMovies)
     }
 
-    Scaffold() { paddingValues ->
+    Scaffold() { _ ->
         when (moviesState) {
             is MoviesViewState.Idle -> {
-
+                logcat("STATE"){"idle"}
             }
             is MoviesViewState.Loading -> {
                 ProgressIndicatorComponent()
             }
-            is MoviesViewState.MoviesList -> {
-                MoviesListComponent(movies = moviesState.movies, navigateToMovieDetails = navigateToMovieDetails)
+            is MoviesViewState.Data -> {
+                MoviesListComponent(movieDomainModels = moviesState.movieDomainModels, navigateToMovieDetails = navigateToMovieDetails)
             }
             is MoviesViewState.Error -> {
                 ErrorMessageComponent(message = moviesState.message)

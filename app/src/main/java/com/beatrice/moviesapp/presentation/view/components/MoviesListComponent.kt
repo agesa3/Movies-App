@@ -7,7 +7,6 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -24,13 +23,13 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.beatrice.moviesapp.domain.model.Movie
+import com.beatrice.moviesapp.domain.model.MovieDomainModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun MoviesListComponent(
-    movies: List<Movie>,
+    movieDomainModels: List<MovieDomainModel>,
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     val gridState = rememberLazyGridState()
@@ -74,9 +73,9 @@ fun MoviesListComponent(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(movies) { movie ->
+            items(movieDomainModels) { movie ->
                 MovieComponent(
-                    movie = movie,
+                    movieDomainModel = movie,
                     navigateToMovieDetails = navigateToMovieDetails
                 )
             }
@@ -118,7 +117,7 @@ fun MoviesListComponent(
 @Composable
 fun MoviesListComponentPreviewPhone() {
     Surface(color = Color.White) {
-        MoviesListComponent(movies = movieList)
+        MoviesListComponent(movieDomainModels = movieDomainModelLists)
     }
 }
 
@@ -126,7 +125,7 @@ fun MoviesListComponentPreviewPhone() {
 @Composable
 fun MoviesListComponentPreviewFoldable() {
     Surface(color = Color.White) {
-        MoviesListComponent(movies = movieList)
+        MoviesListComponent(movieDomainModels = movieDomainModelLists)
     }
 }
 
@@ -134,13 +133,13 @@ fun MoviesListComponentPreviewFoldable() {
 @Composable
 fun MoviesListComponentPreviewTablet() {
     Surface(color = Color.White) {
-        MoviesListComponent(movies = movieList)
+        MoviesListComponent(movieDomainModels = movieDomainModelLists)
     }
 }
 
 
-val movieList = listOf(
-    Movie(
+val movieDomainModelLists = listOf(
+    MovieDomainModel(
         id = 0,
         title = "Abc",
         originalTitle = "ABC",
@@ -156,7 +155,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 1,
         title = "Abc",
         originalTitle = "ABC",
@@ -172,7 +171,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 2,
         title = "Abc",
         originalTitle = "ABC",
@@ -188,7 +187,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 3,
         title = "Abc",
         originalTitle = "ABC",
@@ -204,7 +203,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 4,
         title = "Abc",
         originalTitle = "ABC",
@@ -220,7 +219,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 5,
         title = "Abc",
         originalTitle = "ABC",
@@ -236,7 +235,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 6,
         title = "Abc",
         originalTitle = "ABC",
@@ -252,7 +251,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 7,
         title = "Abc",
         originalTitle = "ABC",
@@ -268,7 +267,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 8,
         title = "Abc",
         originalTitle = "ABC",
@@ -284,7 +283,7 @@ val movieList = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    Movie(
+    MovieDomainModel(
         id = 9,
         title = "Abc",
         originalTitle = "ABC",

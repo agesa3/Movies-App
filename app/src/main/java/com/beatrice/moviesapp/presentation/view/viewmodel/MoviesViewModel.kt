@@ -8,10 +8,10 @@ import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.util.TimeCapsule
 import com.beatrice.moviesapp.presentation.util.TimeTravelCapsule
-import com.beatrice.moviesapp.data.network.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 const val MOVIES_STATE_KEY = "movies_state"
+
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
     private val movieRepository: MovieRepository,
@@ -30,7 +31,8 @@ class MoviesViewModel @Inject constructor(
         MutableStateFlow(MoviesViewState.Loading)
 
     val moviesViewState: StateFlow<MoviesViewState> = savedStateHandle.getStateFlow(
-        MOVIES_STATE_KEY, MoviesViewState.Idle)
+        MOVIES_STATE_KEY, MoviesViewState.Loading
+    )
 
     val movieUiEvents = Channel<MovieUiEvent>(Channel.BUFFERED)
 
@@ -56,28 +58,11 @@ class MoviesViewModel @Inject constructor(
 
     private fun getPopularMovies() {
         viewModelScope.launch(ioDispatcher) {
-            movieRepository.getPopularMovies().collect { result ->
-                when (result) {
-                    is NetworkResult.Success -> {
-                        val newState = MoviesViewState.MoviesList(movies = result.data)
-                        timeCapsule.addState(newState)
-                        savedStateHandle[MOVIES_STATE_KEY] = newState
-                    }
-                    is NetworkResult.Error -> {
-                        val newState =
-                            MoviesViewState.Error(message = "TODO: Put appropriate message")
-                        timeCapsule.addState(newState)
-                        savedStateHandle[MOVIES_STATE_KEY] = newState
+            delay(2000)
+            movieRepository.getPopularMovies().collect { moviesList ->
+                val newState = MoviesViewState.Data(moviesList)
+                savedStateHandle[MOVIES_STATE_KEY] = newState
 
-                    }
-                    is NetworkResult.Exception -> {
-                        val newState =
-                            MoviesViewState.Error(message = "TODO: Put appropriate message")
-                        timeCapsule.addState(newState)
-                        savedStateHandle[MOVIES_STATE_KEY] = newState
-
-                    }
-                }
             }
         }
     }

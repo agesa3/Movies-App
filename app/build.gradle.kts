@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
 }
+val tdmbApiKey: String = gradleLocalProperties(rootDir).getProperty("TDMB_API_KEY")
 
 android {
     namespace = "com.beatrice.moviesapp"
@@ -26,6 +29,8 @@ android {
     buildTypes {
         getByName("release") {
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "TDMB_API_KEY", tdmbApiKey)
+            // TODO: Create a reusable variable
 
             val minifyEnabled = false
             proguardFiles(
@@ -35,6 +40,7 @@ android {
         }
         getByName("debug") {
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "TDMB_API_KEY", tdmbApiKey)
         }
     }
     compileOptions {
@@ -59,11 +65,11 @@ android {
 
 dependencies {
 
-    val compose_version = "1.4.0-alpha03"
+    val composeVersion = "1.4.0-alpha03"
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.activity:activity-compose:1.6.1")
-    implementation("androidx.compose.ui:ui:$compose_version")
-    implementation("androidx.compose.ui:ui-tooling-preview:$compose_version")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
 
 
     // Lifecycle
@@ -97,12 +103,15 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    val coroutineVersion = "1.6.4"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.44.2")
+    kapt("com.google.dagger:hilt-compiler:2.44.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     // logcat
     implementation("com.squareup.logcat:logcat:0.1")
@@ -110,14 +119,20 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
 
+    // WorkManager
+    val workVersion = "2.7.1"
+    implementation("androidx.work:work-runtime-ktx:$workVersion")
+
     // Test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_version")
-    debugImplementation("androidx.compose.ui:ui-tooling:$compose_version")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
 }
+
 
 kapt {
     correctErrorTypes = true
