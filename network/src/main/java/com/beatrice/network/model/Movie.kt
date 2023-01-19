@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.core.network.model
+package com.beatrice.network.model
 
 data class  Movie(
     val adult: Boolean?,

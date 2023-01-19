@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.core.network.di
+package com.beatrice.network.di
 
 import javax.inject.Qualifier
 

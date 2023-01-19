@@ -1,18 +1,18 @@
 package com.beatrice.moviesapp.utils
 
 import com.beatrice.moviesapp.core.database.model.MovieEntity
-import com.beatrice.moviesapp.core.network.model.Movie
-import com.beatrice.moviesapp.core.network.model.MovieNetworkResult
+import com.beatrice.network.model.Movie
+import com.beatrice.network.model.MovieNetworkResult
 
-val movieNetworkResult: MovieNetworkResult
-    get() = MovieNetworkResult(
-            page = 1,
-            total_pages = 10,
-            total_results = 200,
-            results = moviesResultRemote,
-        )
+val movieNetworkResult: com.beatrice.network.model.MovieNetworkResult
+    get() = com.beatrice.network.model.MovieNetworkResult(
+        page = 1,
+        total_pages = 10,
+        total_results = 200,
+        results = moviesResultRemote,
+    )
 val moviesResultRemote = listOf(
-    Movie(
+    com.beatrice.network.model.Movie(
         id = 127,
         title = "Prison",
         original_title = "The Prison",
@@ -28,7 +28,7 @@ val moviesResultRemote = listOf(
         genre_ids = emptyList(),
         video = true
     ),
-    Movie(
+    com.beatrice.network.model.Movie(
         id = 128,
         title = "Break prison",
         original_title = "The Prison Break",

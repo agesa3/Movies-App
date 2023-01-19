@@ -5,8 +5,8 @@ import com.beatrice.moviesapp.core.data.util.MovieEnums
 import com.beatrice.moviesapp.core.database.dao.MovieDao
 import com.beatrice.moviesapp.core.database.model.MovieEntity
 import com.beatrice.moviesapp.core.database.model.toMoviesList
-import com.beatrice.moviesapp.core.network.datasource.MoviesDataSource
-import com.beatrice.moviesapp.core.network.model.toMovieEntityList
+import com.beatrice.network.moviesDataSource.MoviesDataSource
+import com.beatrice.network.model.toMovieEntityList
 import com.beatrice.moviesapp.core.domain.model.MovieDomainModel
 import com.beatrice.moviesapp.core.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieDao: MovieDao,
-    private val moviesDataSource: MoviesDataSource
+    private val moviesDataSource: com.beatrice.network.moviesDataSource.MoviesDataSource
 ) : MovieRepository {
     override fun getPopularMovies(): Flow<List<MovieDomainModel>> = flow {
         val movies = movieDao.getMovies()

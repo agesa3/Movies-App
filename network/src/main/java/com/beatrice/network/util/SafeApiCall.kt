@@ -1,4 +1,4 @@
-package com.beatrice.moviesapp.core.network.util
+package com.beatrice.network.util
 
 import logcat.logcat
 import retrofit2.HttpException
