@@ -1,6 +1,6 @@
 package com.beatrice.network.di
 
-import com.beatrice.network.ApiService
+import com.beatrice.network.MoviesApiService
 import com.beatrice.network.BuildConfig
 import com.beatrice.network.BuildConfig.BASE_URL
 import dagger.Module
@@ -62,5 +62,5 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
+    fun provideApiService(retrofit: Retrofit) = retrofit.create(MoviesApiService::class.java)
 }

@@ -1,11 +1,10 @@
 package com.beatrice.moviesapp.utils
 
 import com.beatrice.moviesapp.core.database.model.MovieEntity
-import com.beatrice.network.model.Movie
-import com.beatrice.network.model.MovieNetworkResult
 
-val movieNetworkResult: com.beatrice.network.model.MovieNetworkResult
-    get() = com.beatrice.network.model.MovieNetworkResult(
+
+val movieNetworkResult: MoviesResponse
+    get() = MoviesResponse(
         page = 1,
         total_pages = 10,
         total_results = 200,

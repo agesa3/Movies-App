@@ -1,15 +1,15 @@
 package com.beatrice.network.moviesDataSource
 
 import com.beatrice.network.util.handleApi
-import com.beatrice.network.ApiService
+import com.beatrice.network.MoviesApiService
 import com.beatrice.network.model.MoviesResponse
 import javax.inject.Inject
 
 
-class MoviesDataSourceImpl @Inject constructor(private val apiService: ApiService) :
+class MoviesDataSourceImpl @Inject constructor(private val moviesApiService: MoviesApiService) :
     MoviesDataSource {
 
     override suspend fun getPopularMovies(): Result<MoviesResponse?> = handleApi {
-        apiService.getPopularMovies()
+        moviesApiService.getPopularMovies()
     }
 }

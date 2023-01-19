@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 
-interface ApiService {
+interface MoviesApiService {
     @GET("movie/popular")
     suspend fun getPopularMovies(): Response<MoviesResponse>
 }

@@ -46,8 +46,6 @@ android {
     }
 }
 
-
-
 dependencies {
 
     // Retrofit
@@ -60,10 +58,16 @@ dependencies {
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.44.2")
+
     kapt("com.google.dagger:hilt-compiler:2.44.2")
 
     // logcat
     implementation("com.squareup.logcat:logcat:0.1")
+
+    // Testing
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("junit:junit:4.12")
+
 
 }
 // Allow references to generated code
