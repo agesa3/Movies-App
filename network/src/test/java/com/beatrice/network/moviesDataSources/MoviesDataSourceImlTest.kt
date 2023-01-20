@@ -21,8 +21,5 @@ class MoviesDataSourceImlTest {
         assertEquals(data?.page, 1)
         assertEquals(data?.results?.size, 2)
         assertEquals(data?.results?.get(0)?.original_title, "The Prison")
-
     }
-
-
 }

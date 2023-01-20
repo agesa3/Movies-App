@@ -31,11 +31,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.beatrice.moviesapp.R
-import com.beatrice.moviesapp.core.domain.model.MovieDomainModel
+import com.beatrie.domain.models.MovieDomainModel
 
 @Composable
 fun MovieComponent(
-    movieDomainModel: MovieDomainModel,
+    movieDomainModel: com.beatrie.domain.models.MovieDomainModel,
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     /**
@@ -146,7 +146,7 @@ fun MovieComponent(
 fun MovieComponentPreview() {
     Surface(color = Color.White) {
         MovieComponent(
-            movieDomainModel = MovieDomainModel(
+            movieDomainModel = com.beatrie.domain.models.MovieDomainModel(
                 id = 0,
                 title = "Abc",
                 originalTitle = "ABC",

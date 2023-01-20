@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -23,13 +22,13 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.beatrice.moviesapp.core.domain.model.MovieDomainModel
+import com.beatrie.domain.models.MovieDomainModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun MoviesListComponent(
-    movieDomainModels: List<MovieDomainModel>,
+    movieDomainModels: List<com.beatrie.domain.models.MovieDomainModel>,
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     val gridState = rememberLazyGridState()
@@ -139,7 +138,7 @@ fun MoviesListComponentPreviewTablet() {
 
 
 val movieDomainModelLists = listOf(
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 0,
         title = "Abc",
         originalTitle = "ABC",
@@ -155,7 +154,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 1,
         title = "Abc",
         originalTitle = "ABC",
@@ -171,7 +170,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 2,
         title = "Abc",
         originalTitle = "ABC",
@@ -187,7 +186,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 3,
         title = "Abc",
         originalTitle = "ABC",
@@ -203,7 +202,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 4,
         title = "Abc",
         originalTitle = "ABC",
@@ -219,7 +218,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 5,
         title = "Abc",
         originalTitle = "ABC",
@@ -235,7 +234,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 6,
         title = "Abc",
         originalTitle = "ABC",
@@ -251,7 +250,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 7,
         title = "Abc",
         originalTitle = "ABC",
@@ -267,7 +266,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 8,
         title = "Abc",
         originalTitle = "ABC",
@@ -283,7 +282,7 @@ val movieDomainModelLists = listOf(
                 "The quick brown fox jumped over a lazy dog. " +
                 "The quick brown fox jumped over a lazy dog."
     ),
-    MovieDomainModel(
+    com.beatrie.domain.models.MovieDomainModel(
         id = 9,
         title = "Abc",
         originalTitle = "ABC",

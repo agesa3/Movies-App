@@ -28,7 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.beatrice.moviesapp.R
-import com.beatrice.moviesapp.core.domain.model.MovieDomainModel
+import com.beatrie.domain.models.MovieDomainModel
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.view.viewmodel.MoviesViewModel
 
@@ -39,7 +39,7 @@ fun MovieDetailScreen(
     moviesViewModel: MoviesViewModel = hiltViewModel()
 ) {
     val movieState = moviesViewModel.moviesViewState.collectAsStateWithLifecycle().value
-    val movieDomainModel: MovieDomainModel? = when (movieState) {
+    val movieDomainModel: com.beatrie.domain.models.MovieDomainModel? = when (movieState) {
         is MoviesViewState.Data -> {
             val test = movieState.movieDomainModels.find { movie -> movie.id == movieId }
             test
@@ -99,7 +99,7 @@ fun MovieDetailScreenPreview() {
     }
 }
 
-val movieDomainModel = MovieDomainModel(
+val movieDomainModel = com.beatrie.domain.models.MovieDomainModel(
     id = 0,
     title = "Abc",
     originalTitle = "ABC",

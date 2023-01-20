@@ -3,7 +3,7 @@ package com.beatrice.moviesapp.presentation.view.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.beatrice.moviesapp.core.domain.repository.MovieRepository
+import com.beatrie.domain.repository.MovieRepository
 import com.beatrice.moviesapp.presentation.intent.MovieUiEvent
 import com.beatrice.moviesapp.presentation.model.MoviesViewState
 import com.beatrice.moviesapp.presentation.util.TimeCapsule
@@ -22,7 +22,7 @@ const val MOVIES_STATE_KEY = "movies_state"
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    private val movieRepository: MovieRepository,
+    private val movieRepository: com.beatrie.domain.repository.MovieRepository,
     private val ioDispatcher: CoroutineDispatcher,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
