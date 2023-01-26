@@ -44,9 +44,9 @@ dependencies {
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.44.2")
-    implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":network")))
     implementation(project(mapOf("path" to ":database")))
+    implementation(project(mapOf("path" to ":domain")))
     kapt("com.google.dagger:hilt-compiler:2.44.2")
 
     // Test

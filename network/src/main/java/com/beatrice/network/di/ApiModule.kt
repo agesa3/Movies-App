@@ -14,6 +14,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+/**
+ * FIXME: I do not want this as a Android module
+ * just a kotlin library. How could I achieve this
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
