@@ -3,7 +3,9 @@ package com.beatrice.moviesapp
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
+import com.example.sync.workers.periodicSyncTask
 import dagger.hilt.android.HiltAndroidApp
 import logcat.AndroidLogcatLogger
 import logcat.LogPriority
@@ -26,11 +28,11 @@ class MoviesApplication : Application(), Configuration.Provider {
         schedulePeriodicTask()
     }
     private fun schedulePeriodicTask() {
-//        workManager.enqueueUniquePeriodicWork(
-//            "syncWork",
-//            ExistingPeriodicWorkPolicy.KEEP,
-//            periodicSyncTask,
-//        )
+        workManager.enqueueUniquePeriodicWork(
+            "syncWork",
+            ExistingPeriodicWorkPolicy.KEEP,
+            periodicSyncTask,
+        )
     }
 
     override fun getWorkManagerConfiguration(): Configuration {

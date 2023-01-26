@@ -50,6 +50,7 @@ dependencies {
     // features:popularmovies
     implementation(project(mapOf("path" to ":features:popularmovies")))
     implementation(project(mapOf("path" to ":domain")))
+    implementation(project(mapOf("path" to ":sync")))
 
     val composeVersion = "1.4.0-alpha03"
     implementation("androidx.core:core-ktx:1.9.0")
@@ -92,9 +93,6 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
 
-    // WorkManager
-    val workVersion = "2.7.1"
-    implementation("androidx.work:work-runtime-ktx:$workVersion")
 
     // Test
     testImplementation("junit:junit:4.13.2")

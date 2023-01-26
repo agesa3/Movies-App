@@ -13,11 +13,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-/**
- * FIXME: Could this just be a Kotlin Library.. Maybe not
- * That would be amazing
- * Hilt! 🙃
- */
 class MovieRepositoryImpl @Inject constructor(
     private val movieDao: MovieDao,
     private val moviesDataSource: MoviesDataSource

@@ -27,10 +27,12 @@ fun MovieScreen(
         moviesViewModel.movieUiEvents.send(MovieUiEvent.FetchPopularMovies)
     }
 
-    Scaffold() { _ ->
+    Scaffold { _ ->
+        logcat("STAAAATE"){"is $moviesState"}
         when (moviesState) {
+
             is MoviesViewState.Idle -> {
-                logcat("STATE"){"idle"}
+                logcat("STAAAATE"){"idle"}
             }
             is MoviesViewState.Loading -> {
                 ProgressIndicatorComponent()

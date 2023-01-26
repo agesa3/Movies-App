@@ -11,6 +11,7 @@ suspend fun <T : Any> handleApi(
         val response = block()
         val body = response.body()
         if (response.isSuccessful && body != null) {
+            logcat("Network_request"){"successful ${response.body()}"}
             Result.success(response.body())
         } else {
             logcat("Network_request"){"failed with code ${response.code()} message ${response.message()}"}
