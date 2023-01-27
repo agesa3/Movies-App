@@ -51,7 +51,7 @@ fun MoviesListComponent(
                 }
             }
         }
-    ) { _ ->
+    ) { _->
         /**
          * 1. Custom grids
          */

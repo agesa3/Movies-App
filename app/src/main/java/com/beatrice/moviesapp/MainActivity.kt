@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MoviesAppTheme {
-                // A surface container using the 'background' color from the theme
                 val navController = rememberNavController()
                 Surface(
                     modifier = Modifier.fillMaxSize(),

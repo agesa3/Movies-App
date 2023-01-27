@@ -1,15 +1,15 @@
-
-object BuildPlugins{
-   const val androidApplication = "com.android.application"
-   const val androidLibrary = "com.android.library"
-   const val kotlinAndroid = "org.jetbrains.kotlin.android"
-   const val daggerHilt = "com.google.dagger.hilt.android"
-   const val kotlinJvm = "org.jetbrains.kotlin.jvm"
+object BuildPlugins {
+    const val androidApplication = "com.android.application"
+    const val androidLibrary = "com.android.library"
+    const val kotlinAndroid = "org.jetbrains.kotlin.android"
+    const val daggerHilt = "com.google.dagger.hilt.android"
+    const val kotlinKapt = "kotlin-kapt"
+    const val koltinParcelize = "kotlin-parcelize"
 }
 
 object Versions {
     val compose = "1.4.0-alpha03"
-    val material3 = "1.1.0-alpha03"
+    val material3 = "1.1.0-alpha03" // 5
     val constraintLayout = "1.0.1"
     val navigation = "2.5.3"
     val lifecycle = "2.6.0-alpha03"
@@ -44,16 +44,21 @@ object Libraries {
 
     // Lifecycle
     val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    val viewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
-    val lifecycleRuntimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycle}"
+    val viewModelSavedState =
+        "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
+    val lifecycleRuntimeCompose =
+        "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycle}"
 
     // Coroutines
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 
     // Hilt
     val daggerHilt = "com.google.dagger:hilt-android:${Versions.daggerHilt}"
-    val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationCompose}"
+    val hiltNavigationCompose =
+        "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationCompose}"
     val hiltWork = "androidx.hilt:hilt-work:${Versions.hiltWork}"
+    val hiltDaggerCompiler = "com.google.dagger:hilt-compiler:${Versions.daggerHilt}"
+    val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltWork}"
 
     // Coil
     val coil = "io.coil-kt:coil-compose:${Versions.coil}"
@@ -64,7 +69,7 @@ object Libraries {
 
 }
 
-object TestLibraries{
+object TestLibraries {
     val junit4 = "unit:junit:${Versions.jUnit4}"
     val composeUi = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
     val composeTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"

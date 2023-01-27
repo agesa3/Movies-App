@@ -5,5 +5,4 @@ plugins {
     id(BuildPlugins.androidLibrary)  apply false
     id(BuildPlugins.kotlinAndroid) version Versions.kotlinAndroid apply false
     id(BuildPlugins.daggerHilt) version Versions.daggerHilt apply false
-    id(BuildPlugins.kotlinJvm) version Versions.kotlinJvm apply false
 }

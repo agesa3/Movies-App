@@ -10,7 +10,6 @@ pluginManagement {
         id("com.android.library") version "7.3.0"
         id("org.jetbrains.kotlin.android") version "1.7.21"
         id("com.google.dagger.hilt.android") version "2.44"
-        id("org.jetbrains.kotlin.jvm") version "1.7.21"
     }
 
     resolutionStrategy {
@@ -30,13 +29,14 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+include(
+    ":app",
+    ":database",
+    ":network",
+    ":data",
+    ":features:popularmovies",
+    ":domain",
+    ":sync"
+)
 rootProject.name = "Movies App"
-include(":app")
-include(":database")
-include(":core")
-include(":network")
-include(":data")
-include(":features")
-include(":features:popularmovies")
-include(":domain")
-include(":sync")
+
