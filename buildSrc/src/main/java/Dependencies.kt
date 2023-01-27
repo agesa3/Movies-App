@@ -31,6 +31,9 @@ object Versions {
     // Room
     val room = "2.4.3"
 
+    // WorkManager
+    val workManager = "2.7.1"
+
     // Gradle Plugins
     val kotlinAndroid = "1.7.21"
     val kotlinJvm = "1.7.21"
@@ -90,6 +93,8 @@ object Libraries {
     val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
+    // WorkManager
+    val workManager = "androidx.work:work-runtime-ktx:${Versions.workManager}"
 }
 
 object TestLibraries {
