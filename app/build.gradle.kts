@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = ConfigurationData.namespace
+    namespace = "com.beatrice.moviesapp"
     compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
@@ -67,7 +67,7 @@ dependencies {
     kapt(Libraries.hiltDaggerCompiler)
     implementation(Libraries.hiltNavigationCompose)
     implementation(Libraries.hiltWork)
-    kapt(Libraries.hiltCompiler)
+    kapt(Libraries.androidxHiltCompiler)
 
 }
 

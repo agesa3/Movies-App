@@ -1,20 +1,20 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(BuildPlugins.androidLibrary)
+    id(BuildPlugins.kotlinAndroid)
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+    id(BuildPlugins.daggerHilt)
 }
 val tmdbApiKey: String = gradleLocalProperties(rootDir).getProperty("TMDB_API_KEY")
 
 android {
     namespace = "com.beatrice.network"
-    compileSdk = 33
+    compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        minSdk = 22
-        targetSdk = 33
+        minSdk = ConfigurationData.minSdk
+        targetSdk = ConfigurationData.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -24,7 +24,6 @@ android {
         getByName("release") {
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             buildConfigField("String", "TMDB_API_KEY", tmdbApiKey)
-            // TODO: Create a reusable variable
 
             val minifyEnabled = false
             proguardFiles(
@@ -49,24 +48,23 @@ android {
 dependencies {
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation(Libraries.retrofit)
     //Moshi
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation(Libraries.moshi)
     //OkHttp3
-    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10")
+    implementation(Libraries.okHttp3)
+    implementation(Libraries.loggingIntercepter)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44.2")
-
-    kapt("com.google.dagger:hilt-compiler:2.44.2")
+    implementation(Libraries.daggerHilt)
+    kapt(Libraries.hiltDaggerCompiler)
 
     // logcat
-    implementation("com.squareup.logcat:logcat:0.1")
+    implementation(Libraries.logcat)
 
     // Testing
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation("junit:junit:4.12")
+    testImplementation (TestLibraries.coroutine)
+    testImplementation(TestLibraries.junit4)
 
 
 }

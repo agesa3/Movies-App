@@ -22,11 +22,17 @@ object Versions {
     val coil = "2.2.2"
     val jUnit4 = "4.13.2"
 
+    // Retrofit
+    val retrofit = "2.9.0"
+
+    // OkHttp3
+    val okHttp3 = "5.0.0-alpha.10"
+
     // Gradle Plugins
     val kotlinAndroid = "1.7.21"
     val kotlinJvm = "1.7.21"
-
 }
+
 
 object Libraries {
     // Compose
@@ -58,7 +64,7 @@ object Libraries {
         "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationCompose}"
     val hiltWork = "androidx.hilt:hilt-work:${Versions.hiltWork}"
     val hiltDaggerCompiler = "com.google.dagger:hilt-compiler:${Versions.daggerHilt}"
-    val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltWork}"
+    val androidxHiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltWork}"
 
     // Coil
     val coil = "io.coil-kt:coil-compose:${Versions.coil}"
@@ -66,13 +72,26 @@ object Libraries {
     // logcat
     val logcat = "com.squareup.logcat:logcat:${Versions.logcat}"
 
+    // Retrofit
+    val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+
+    // Moshi
+    val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+
+    // Okhttp3
+    val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okHttp3}"
+    val loggingIntercepter = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3}"
+
+
 
 }
 
 object TestLibraries {
     val junit4 = "unit:junit:${Versions.jUnit4}"
+
     val composeUi = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
     val composeTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     val composeManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
-    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}"
+
+    val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}"
 }
