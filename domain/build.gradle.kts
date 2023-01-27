@@ -1,18 +1,18 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-parcelize")
+    id(BuildPlugins.androidLibrary)
+    id(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.kotlinKapt)
+    id(BuildPlugins.daggerHilt)
+    id(BuildPlugins.koltinParcelize)
 }
 
 android {
     namespace = "com.beatrice.domain"
-    compileSdk = 33
+    compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        minSdk = 22
-        targetSdk = 33
+        minSdk = ConfigurationData.minSdk
+        targetSdk = ConfigurationData.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -38,18 +38,14 @@ android {
 
 dependencies {
     // Coroutines
-    val coroutineVersion = "1.6.4"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+    implementation(Libraries.coroutines)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44.2")
-    kapt("com.google.dagger:hilt-compiler:2.44.2")
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation("androidx.hilt:hilt-work:1.0.0")
+    implementation(Libraries.daggerHilt)
+    kapt(Libraries.hiltDaggerCompiler)
 
     // logcat
-    implementation("com.squareup.logcat:logcat:0.1")
+    implementation(Libraries.logcat)
 
 }
 
