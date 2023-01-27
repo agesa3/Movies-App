@@ -1,4 +1,11 @@
-package com.beatrice.buildsrc
+
+object BuildPlugins{
+   const val androidApplication = "com.android.application"
+   const val androidLibrary = "com.android.library"
+   const val kotlinAndroid = "org.jetbrains.kotlin.android"
+   const val daggerHilt = "com.google.dagger.hilt.android"
+   const val kotlinJvm = "org.jetbrains.kotlin.jvm"
+}
 
 object Versions {
     val compose = "1.4.0-alpha03"
@@ -14,6 +21,11 @@ object Versions {
     val logcat = "0.1"
     val coil = "2.2.2"
     val jUnit4 = "4.13.2"
+
+    // Gradle Plugins
+    val kotlinAndroid = "1.7.21"
+    val kotlinJvm = "1.7.21"
+
 }
 
 object Libraries {
