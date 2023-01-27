@@ -54,7 +54,7 @@ dependencies {
 
     // Material 3
     implementation(Libraries.material3)
-    implementation(Libraries.navigation)
+    implementation(Libraries.composeNavigation)
 
     // Coroutines
     implementation(Libraries.coroutines)

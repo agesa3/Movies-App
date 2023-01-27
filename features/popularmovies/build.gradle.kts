@@ -1,19 +1,17 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
-    id("kotlin-kapt")
+    id(BuildPlugins.androidLibrary)
+    id(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.koltinParcelize)
+    id(BuildPlugins.kotlinKapt)
 }
 
 android {
     namespace = "com.beatrice.popularmovies"
-    compileSdk = 33
+    compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        minSdk = 22
-        targetSdk = 33
+        minSdk = ConfigurationData.minSdk
+        targetSdk = ConfigurationData.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,48 +40,45 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":data")))
+    implementation(project(BuildModules.Domain))
+    implementation(project(BuildModules.Data))
 
-    val composeVersion = "1.4.0-alpha03"
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.activity:activity-compose:1.6.1")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+//    val composeVersion = "1.4.0-alpha03"
+//    implementation("androidx.core:core-ktx:1.9.0")
+//    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation(Libraries.composeUi)
+    implementation(Libraries.composePreview)
 
     // Material 3
-    implementation("androidx.compose.material3:material3:1.1.0-alpha04")
+    implementation(Libraries.material3)
 
     // Constraint Layout
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation(Libraries.constraintLayout)
 
     // Navigation
-    val navVersion = "2.5.3"
-    implementation("androidx.navigation:navigation-compose:$navVersion")
+//    val navVersion = "2.5.3"
+    implementation(Libraries.composeNavigation)
 
     // Lifecycle
-    val lifecycleVersion = "2.6.0-alpha03"
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
+    implementation(Libraries.lifecycleRuntime)
+    implementation(Libraries.viewModelSavedState)
+    implementation(Libraries.lifecycleRuntimeCompose)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44.2")
-    kapt("com.google.dagger:hilt-compiler:2.44.2")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation("androidx.hilt:hilt-work:1.0.0")
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
-
+    implementation(Libraries.daggerHilt)
+    kapt(Libraries.hiltDaggerCompiler)
+    implementation(Libraries.hiltNavigationCompose)
+    implementation(Libraries.hiltWork)
+    kapt(Libraries.androidxHiltCompiler)
 
     // logcat
-    implementation("com.squareup.logcat:logcat:0.1")
+    implementation(Libraries.logcat)
 
     // Coil
-    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation(Libraries.coil)
 
     // Coroutines
-    val coroutineVersion = "1.6.4"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+    implementation(Libraries.coroutines)
 }
 
 kapt {

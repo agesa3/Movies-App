@@ -16,13 +16,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -30,6 +30,7 @@ import com.beatrice.popularmovies.R
 import com.beatrice.popularmovies.model.MoviesViewState
 import com.beatrice.popularmovies.view.viewmodel.MoviesViewModel
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun MovieDetailScreen(
     movieId: Int,
@@ -91,6 +92,7 @@ fun MovieDetailScreen(
 @Preview
 @Composable
 fun MovieDetailScreenPreview() {
+
     Surface(color = Color.White) {
         MovieDetailScreen(movieId = 0)
     }

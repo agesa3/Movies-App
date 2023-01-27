@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.beatrice.popularmovies.view.components.ErrorMessageComponent
 import com.beatrice.popularmovies.view.components.MoviesListComponent
@@ -15,7 +16,7 @@ import com.beatrice.popularmovies.model.MoviesViewState
 import com.beatrice.popularmovies.view.viewmodel.MoviesViewModel
 import logcat.logcat
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun MovieScreen(
     moviesViewModel: MoviesViewModel = hiltViewModel(),

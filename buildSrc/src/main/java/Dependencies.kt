@@ -45,14 +45,13 @@ object Libraries {
     val activityCompose = "androidx.activity:activity-compose:${Versions.compose}"
     val composeUi = "androidx.compose.ui:ui:~${Versions.compose}"
     val composePreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
+    val composeNavigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
 
     // Material 3
-    val material3 = "androidx.compose.material3:material3: ${Versions.material3}"
+    val material3 = "androidx.compose.material3:material3:${Versions.material3}"
     val constraintLayout =
         "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayout}"
 
-    // Navigation
-    val navigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
 
     // Lifecycle
     val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
