@@ -3,7 +3,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinAndroid)
-    kotlin("kapt")
+    id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
 }
 val tmdbApiKey: String = gradleLocalProperties(rootDir).getProperty("TMDB_API_KEY")
@@ -68,7 +68,6 @@ dependencies {
 
 
 }
-// Allow references to generated code
 kapt {
     correctErrorTypes = true
 }

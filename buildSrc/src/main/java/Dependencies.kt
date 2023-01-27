@@ -28,6 +28,9 @@ object Versions {
     // OkHttp3
     val okHttp3 = "5.0.0-alpha.10"
 
+    // Room
+    val room = "2.4.3"
+
     // Gradle Plugins
     val kotlinAndroid = "1.7.21"
     val kotlinJvm = "1.7.21"
@@ -82,7 +85,10 @@ object Libraries {
     val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okHttp3}"
     val loggingIntercepter = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3}"
 
-
+    // Room
+    val room = "androidx.room:room-runtime:${Versions.room}"
+    val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+    val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
 }
 
