@@ -1,19 +1,19 @@
 import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id(BuildPlugins.androidLibrary)
+    id(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.kotlinKapt)
+    id(BuildPlugins.daggerHilt)
 }
 
 android {
     namespace = "com.beatrice.data"
-    compileSdk = 33
+    compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        minSdk = 22
-        targetSdk = 33
+        minSdk = ConfigurationData.minSdk
+        targetSdk = ConfigurationData.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -38,18 +38,18 @@ android {
 }
 
 dependencies {
+    implementation(project(BuildModules.Network))
+    implementation(project(BuildModules.Database))
+    implementation(project(BuildModules.Domain))
 
     // logcat
-    implementation("com.squareup.logcat:logcat:0.1")
+    implementation(Libraries.logcat)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44.2")
-    implementation(project(mapOf("path" to ":network")))
-    implementation(project(mapOf("path" to ":database")))
-    implementation(project(mapOf("path" to ":domain")))
-    kapt("com.google.dagger:hilt-compiler:2.44.2")
+    implementation(Libraries.daggerHilt)
+    kapt(Libraries.hiltDaggerCompiler)
 
     // Test
-    testImplementation("junit:junit:4.13.2")
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation(TestLibraries.junit4)
+    testImplementation (TestLibraries.coroutine)
 }
