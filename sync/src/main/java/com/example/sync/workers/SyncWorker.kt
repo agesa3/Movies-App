@@ -32,7 +32,6 @@ class SyncWorker @AssistedInject constructor(
             else Result.retry()
         }
     }
-
 }
 
 val workerConstraints = Constraints.Builder().apply {

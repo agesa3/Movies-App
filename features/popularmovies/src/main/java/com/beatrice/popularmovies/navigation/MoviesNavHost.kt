@@ -7,7 +7,6 @@ import androidx.navigation.compose.composable
 import com.beatrice.popularmovies.view.screens.MovieDetailScreen
 import com.beatrice.popularmovies.view.screens.MovieScreen
 
-
 @Composable
 fun MoviesNavHost(
     navController: NavHostController,
@@ -23,7 +22,7 @@ fun MoviesNavHost(
                 }
             )
         }
-        composable(Screens.MovieDetailScreen.route) {backStackEntry ->
+        composable(Screens.MovieDetailScreen.route) { backStackEntry ->
             val movieId = backStackEntry.arguments?.getString("movieId")
             requireNotNull(movieId) { "movieId parameter wasn't found" }
             MovieDetailScreen(movieId = movieId.toInt())

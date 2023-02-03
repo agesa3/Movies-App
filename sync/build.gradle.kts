@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
+    id(BuildPlugins.klint)
 }
 
 android {
@@ -49,10 +50,8 @@ dependencies {
     implementation(Libraries.hiltWork)
     kapt(Libraries.androidxHiltCompiler)
 
-
     // Coroutines
     implementation(Libraries.coroutines)
-
 }
 kapt {
     correctErrorTypes = true

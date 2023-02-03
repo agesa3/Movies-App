@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
     id(BuildPlugins.koltinParcelize)
+    id(BuildPlugins.klint)
 }
 
 android {
@@ -68,7 +69,6 @@ dependencies {
     implementation(Libraries.hiltNavigationCompose)
     implementation(Libraries.hiltWork)
     kapt(Libraries.androidxHiltCompiler)
-
 }
 
 kapt {

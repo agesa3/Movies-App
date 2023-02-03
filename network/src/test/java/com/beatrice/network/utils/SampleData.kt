@@ -3,7 +3,6 @@ package com.beatrice.network.utils
 import com.beatrice.network.model.Movie
 import com.beatrice.network.model.MoviesResponse
 
-
 val moviesResponse: MoviesResponse
     get() = MoviesResponse(
         page = 1,

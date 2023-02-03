@@ -8,11 +8,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.beatrice.popularmovies.intent.MovieUiEvent
+import com.beatrice.popularmovies.model.MoviesViewState
 import com.beatrice.popularmovies.view.components.ErrorMessageComponent
 import com.beatrice.popularmovies.view.components.MoviesListComponent
 import com.beatrice.popularmovies.view.components.ProgressIndicatorComponent
-import com.beatrice.popularmovies.intent.MovieUiEvent
-import com.beatrice.popularmovies.model.MoviesViewState
 import com.beatrice.popularmovies.view.viewmodel.MoviesViewModel
 import logcat.logcat
 
@@ -29,11 +29,11 @@ fun MovieScreen(
     }
 
     Scaffold { _ ->
-        logcat("STAAAATE"){"is $moviesState"}
+        logcat("STAAAATE") { "is $moviesState" }
         when (moviesState) {
 
             is MoviesViewState.Idle -> {
-                logcat("STAAAATE"){"idle"}
+                logcat("STAAAATE") { "idle" }
             }
             is MoviesViewState.Loading -> {
                 ProgressIndicatorComponent()

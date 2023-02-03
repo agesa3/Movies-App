@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
+    id(BuildPlugins.klint)
 }
 
 android {
@@ -38,5 +39,4 @@ dependencies {
     // Hilt
     implementation(Libraries.daggerHilt)
     kapt(Libraries.hiltDaggerCompiler)
-
 }

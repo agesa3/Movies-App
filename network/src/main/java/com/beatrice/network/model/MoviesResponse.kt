@@ -1,6 +1,5 @@
 package com.beatrice.network.model
 
-
 data class MoviesResponse(
     val page: Int?,
     val results: List<Movie>?,

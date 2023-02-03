@@ -12,8 +12,8 @@ class FakeMovieDao : com.beatrice.database.dao.MovieDao {
 
     override suspend fun updateMovies(moviesList: List<MovieEntity>) {
         moviesList.forEach { anUpdate ->
-            moviesListLocal.filter{ it.id == anUpdate.id }.forEach{
-                 it.voteAverage = anUpdate.voteAverage
+            moviesListLocal.filter { it.id == anUpdate.id }.forEach {
+                it.voteAverage = anUpdate.voteAverage
             }
         }
     }

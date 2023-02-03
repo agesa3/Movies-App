@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
     id(BuildPlugins.koltinParcelize)
+    id(BuildPlugins.klint)
 }
 
 android {
@@ -46,7 +47,6 @@ dependencies {
 
     // logcat
     implementation(Libraries.logcat)
-
 }
 
 kapt {

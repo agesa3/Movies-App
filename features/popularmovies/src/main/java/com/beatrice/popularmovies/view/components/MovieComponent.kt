@@ -34,7 +34,7 @@ import com.beatrie.domain.models.MovieDomainModel
 
 @Composable
 fun MovieComponent(
-    movieDomainModel:MovieDomainModel,
+    movieDomainModel: MovieDomainModel,
     navigateToMovieDetails: (movieId: Int) -> Unit = {}
 ) {
     /**
@@ -48,10 +48,10 @@ fun MovieComponent(
                 selected = true,
                 onClick = {
                     navigateToMovieDetails(movieDomainModel.id)
-                }),
+                }
+            ),
         elevation = CardDefaults.cardElevation(4.dp),
         shape = RoundedCornerShape(16.dp)
-
 
     ) {
         Row(
@@ -135,8 +135,6 @@ fun MovieComponent(
                 )
             }
         }
-
-
     }
 }
 
@@ -157,12 +155,11 @@ fun MovieComponentPreview() {
                 popularity = 0.0,
                 voteCount = 0,
                 overview = "The quick brown fox jumped over a lazy dog." +
-                        " The quick brown fox jumped over a lazy dog. " +
-                        "The quick brown fox jumped over a lazy dog. " +
-                        "The quick brown fox jumped over a lazy dog.",
+                    " The quick brown fox jumped over a lazy dog. " +
+                    "The quick brown fox jumped over a lazy dog. " +
+                    "The quick brown fox jumped over a lazy dog.",
                 tag = null
             )
         )
-
     }
 }

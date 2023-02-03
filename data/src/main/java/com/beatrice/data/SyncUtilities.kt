@@ -6,7 +6,7 @@ private suspend fun <T> safeSyncCall(block: suspend () -> T): Result<T> =
     try {
         Result.success(block())
     } catch (e: Exception) {
-        logcat("Syncing") {"Exception $e"}
+        logcat("Syncing") { "Exception $e" }
         Result.failure(exception = e)
     }
 
@@ -29,7 +29,4 @@ suspend fun <T> changeListSync(
      * Update local data source
      */
     modelUpdater(changeList)
-
 }.isSuccess
-
-

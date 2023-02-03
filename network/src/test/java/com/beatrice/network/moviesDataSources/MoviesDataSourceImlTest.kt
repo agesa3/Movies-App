@@ -12,9 +12,9 @@ class MoviesDataSourceImlTest {
     private val datasource = MoviesDataSourceImpl(apiService)
 
     @Test
-    fun `test fetching movies return success`() = runTest{
+    fun `test fetching movies return success`() = runTest {
 
-     val result = datasource.getPopularMovies()
+        val result = datasource.getPopularMovies()
         assertTrue(result.isSuccess)
         val data = result.getOrNull()
         assertTrue(data != null)

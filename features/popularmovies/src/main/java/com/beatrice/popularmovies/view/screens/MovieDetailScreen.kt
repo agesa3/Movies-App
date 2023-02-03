@@ -110,7 +110,7 @@ val movieDomainModel = com.beatrie.domain.models.MovieDomainModel(
     popularity = 0.0,
     voteCount = 0,
     overview = "The quick brown fox jumped over a lazy dog." +
-            " The quick brown fox jumped over a lazy dog. " +
-            "The quick brown fox jumped over a lazy dog. " +
-            "The quick brown fox jumped over a lazy dog."
+        " The quick brown fox jumped over a lazy dog. " +
+        "The quick brown fox jumped over a lazy dog. " +
+        "The quick brown fox jumped over a lazy dog."
 )

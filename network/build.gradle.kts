@@ -5,6 +5,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
+    id(BuildPlugins.klint)
 }
 val tmdbApiKey: String = gradleLocalProperties(rootDir).getProperty("TMDB_API_KEY")
 
@@ -49,9 +50,9 @@ dependencies {
 
     // Retrofit
     implementation(Libraries.retrofit)
-    //Moshi
+    // Moshi
     implementation(Libraries.moshi)
-    //OkHttp3
+    // OkHttp3
     implementation(Libraries.okHttp3)
     implementation(Libraries.loggingIntercepter)
 
@@ -63,10 +64,8 @@ dependencies {
     implementation(Libraries.logcat)
 
     // Testing
-    testImplementation (TestLibraries.coroutine)
+    testImplementation(TestLibraries.coroutine)
     testImplementation(TestLibraries.junit4)
-
-
 }
 kapt {
     correctErrorTypes = true

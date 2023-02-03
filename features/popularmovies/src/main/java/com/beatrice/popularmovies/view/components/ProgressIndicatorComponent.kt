@@ -18,6 +18,4 @@ fun ProgressIndicatorComponent() {
             color = Color.DarkGray,
         )
     }
-
-
 }

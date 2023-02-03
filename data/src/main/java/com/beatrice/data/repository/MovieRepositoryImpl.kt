@@ -5,9 +5,9 @@ import com.beatrice.data.utils.MovieEnums
 import com.beatrice.data.utils.toMovieEntityList
 import com.beatrice.data.utils.toMoviesList
 import com.beatrice.database.dao.MovieDao
+import com.beatrice.domain.repository.MovieRepository
 import com.beatrice.network.moviesDataSource.MoviesDataSource
 import com.beatrie.domain.models.MovieDomainModel
-import com.beatrice.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
@@ -33,7 +33,7 @@ class MovieRepositoryImpl @Inject constructor(
                 val fetchedMovies = movieResult?.toMovieEntityList()
                 val fetchedMoviesIds = fetchedMovies?.map { it.id }
                 val oldMovies = movieDao.getMovies().first()
-                val oldMoviesIds = oldMovies.map { it.id}
+                val oldMoviesIds = oldMovies.map { it.id }
 
                 /**
                  * set [NEW] tag on new movies

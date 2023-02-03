@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.beatrice.moviesapp.presentation.navigation.MoviesNavHost
 import com.beatrice.moviesapp.ui.theme.MoviesAppTheme
-
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

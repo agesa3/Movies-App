@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.daggerHilt)
+    id(BuildPlugins.klint)
 }
 
 android {
@@ -49,5 +50,5 @@ dependencies {
 
     // Test
     testImplementation(TestLibraries.junit4)
-    testImplementation (TestLibraries.coroutine)
+    testImplementation(TestLibraries.coroutine)
 }

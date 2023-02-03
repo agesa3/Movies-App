@@ -8,7 +8,6 @@ import com.beatrice.popularmovies.intent.MovieUiEvent
 import com.beatrice.popularmovies.model.MoviesViewState
 import com.beatrice.popularmovies.util.TimeCapsule
 import com.beatrice.popularmovies.util.TimeTravelCapsule
-import dagger.Provides
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
@@ -18,7 +17,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 const val MOVIES_STATE_KEY = "movies_state"
 
@@ -64,17 +62,13 @@ class MoviesViewModel @Inject constructor(
             movieRepository.getPopularMovies().collect { moviesList ->
                 val newState = MoviesViewState.Data(moviesList)
                 savedStateHandle[MOVIES_STATE_KEY] = newState
-
             }
         }
     }
 
     private fun getFavouriteMovies() {
-
     }
 
     private fun markFavourite() {
-
-
     }
 }

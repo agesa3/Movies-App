@@ -11,7 +11,6 @@ import logcat.AndroidLogcatLogger
 import logcat.LogPriority
 import javax.inject.Inject
 
-
 @HiltAndroidApp
 class MoviesApplication : Application(), Configuration.Provider {
     @Inject
@@ -20,7 +19,6 @@ class MoviesApplication : Application(), Configuration.Provider {
     private val workManager by lazy {
         WorkManager.getInstance(applicationContext)
     }
-
 
     override fun onCreate() {
         super.onCreate()

@@ -17,8 +17,4 @@ data class MovieDomainModel(
     val backdropPath: String,
     val overview: String,
     val tag: String? = null
-): Parcelable
-
-
-
-
+) : Parcelable

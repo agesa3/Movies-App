@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class DataModule {
 
     @Binds
-    abstract fun provideMovieDataSource(moviesDataSourceImpl:MoviesDataSourceImpl): MoviesDataSource
+    abstract fun provideMovieDataSource(moviesDataSourceImpl: MoviesDataSourceImpl): MoviesDataSource
 }

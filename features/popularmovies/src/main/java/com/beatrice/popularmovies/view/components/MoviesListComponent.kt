@@ -51,7 +51,7 @@ fun MoviesListComponent(
                 }
             }
         }
-    ) { _->
+    ) { _ ->
         /**
          * 1. Custom grids
          */
@@ -65,7 +65,6 @@ fun MoviesListComponent(
                     val secondColumn = availableSize - spacing - firstColumn
                     return listOf(firstColumn, secondColumn)
                 }
-
             },
             state = gridState,
             contentPadding = PaddingValues(top = 20.dp, bottom = 40.dp, start = 20.dp, end = 20.dp),
@@ -107,10 +106,8 @@ fun MoviesListComponent(
 //                }
 //            }
 //        }
-
     }
 }
-
 
 @Preview(device = Devices.PHONE)
 @Composable
@@ -136,7 +133,6 @@ fun MoviesListComponentPreviewTablet() {
     }
 }
 
-
 val movieDomainModelLists = listOf(
     com.beatrie.domain.models.MovieDomainModel(
         id = 0,
@@ -150,9 +146,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 1,
@@ -166,9 +162,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 2,
@@ -182,9 +178,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 3,
@@ -198,9 +194,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 4,
@@ -214,9 +210,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 5,
@@ -230,9 +226,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 6,
@@ -246,9 +242,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 7,
@@ -262,9 +258,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 8,
@@ -278,9 +274,9 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
     com.beatrie.domain.models.MovieDomainModel(
         id = 9,
@@ -294,8 +290,8 @@ val movieDomainModelLists = listOf(
         popularity = 0.0,
         voteCount = 0,
         overview = "The quick brown fox jumped over a lazy dog." +
-                " The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog. " +
-                "The quick brown fox jumped over a lazy dog."
+            " The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog. " +
+            "The quick brown fox jumped over a lazy dog."
     ),
 )
