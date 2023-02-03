@@ -5,4 +5,5 @@ plugins {
     id(BuildPlugins.kotlinAndroid) version Versions.kotlinAndroid apply false
     id(BuildPlugins.daggerHilt) version Versions.daggerHilt apply false
     id(BuildPlugins.klint) version Versions.klint
+    id(BuildPlugins.detekt) version Versions.detekt
 }
