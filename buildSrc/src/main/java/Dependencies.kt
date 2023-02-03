@@ -5,6 +5,7 @@ object BuildPlugins {
     const val daggerHilt = "com.google.dagger.hilt.android"
     const val kotlinKapt = "kotlin-kapt"
     const val koltinParcelize = "kotlin-parcelize"
+    const val klint = "org.jlleitschuh.gradle.ktlint"
 }
 
 object Versions {
@@ -37,6 +38,7 @@ object Versions {
     // Gradle Plugins
     val kotlinAndroid = "1.7.21"
     val kotlinJvm = "1.7.21"
+    val klint = "11.1.0"
 }
 
 
